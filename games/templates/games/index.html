@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Games</title>
+    {% extends 'games/base.html' %}
+
+</head>
+<body>
+
+{%  block body %}
+<div id="wholePage">
+
+{% if game_list %}
+<table class="table">
+    <!--Sets up headings-->
+    <thead class="thead-dark">
+    <tr>
+      <th scope="col">Album</th>
+      <th scope="col">Artist</th>
+      <th scope="col">Genre</th>
+      <th scope="col">Detail Page</th>
+    </tr>
+    </thead>
+
+    {% for game in game_list %}
+    <tbody>
+    <tr>
+        <td>{{ game.name }}</td>
+        <td>{{ game.name }}</td>
+        <td>{{ game.name }}</td>
+        <td><a href="{% url 'games:detail' game.id %}">Click for more details</a></td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+
+{% else %}
+    <p>No games found!</p>
+{% endif %}
+
+</div>
+{%  endblock %}
+
+</body>
+</html>

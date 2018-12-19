@@ -1,0 +1,12 @@
+<title>Logout</title>
+{% extends 'games/base.html' %}
+
+{% block body %}
+
+<h1>Logged out</h1>
+
+<div class="border-top pt-3">
+    <small class="text-muted"><a href="{% url 'login' %}">Log in</a></small>
+</div>
+
+{%  endblock %}

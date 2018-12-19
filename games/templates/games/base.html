@@ -1,0 +1,115 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href='https://fonts.googleapis.com/css?family=Satisfy' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="{% static 'games/style.css' %}" />
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+{% comment %}<nav class="navbar navbar-default">
+    <div class="container-fluid">
+
+        <!-- Header -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#NavigationBar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="{% url 'music:index' %}">Home</a>
+        </div>
+
+        <!-- Other navbar items --> <!-- li class="active" -->
+        <div class="collapse navbar-collapse" id="NavigationBar">
+            <ul class="nav navbar-nav">
+                <li class=""><a href="{% url 'music:index' %}">
+                    <span class="glyphicon glyphicon-cd" aria-hidden="true"></span>&nbsp; Albums
+                </a></li>
+                <li class=""><a href="#">
+                    <span class="glyphicon glyphicon-cd" aria-hidden="true"></span>&nbsp; Songs</a>
+                </li>
+            </ul>
+
+            <form class="navbar-form navbar-left" role="search" method="get" action="#">
+                <div class="form-group">
+                    <input type="text" class="form-control" name="query" value="">
+                </div>
+                <button type="submit" class="btn btn-default">Search</button>
+            </form>
+
+            <ul class="nav navbar-nav navbar-right">
+                <li class=""><a href="{% url 'music:album-add' %}">
+                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp; Add Album</a>
+                </li>
+
+                <li class=""><a href="{% url 'music:logout' %}">
+                    <span class="glyphicon glyphicon-off" aria-hidden="true"></span>&nbsp; Log Out</a>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+</nav>{% endcomment %}
+
+<header class="site-header">
+  <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
+    <div class="container">
+      <a class="navbar-brand mr-4" href="{% url 'games:index' %}">Suggestream</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarToggle">
+        <div class="navbar-nav mr-auto">
+          <a class="nav-item nav-link" href="{% url 'games:index' %}">Home</a>
+          <a class="nav-item nav-link" href="#">About</a>
+        </div>
+        <!-- Navbar Right Side -->
+        <div class="navbar-nav">
+
+
+            <!--If the user is logged in show the logout button and vice versa-->
+            {% if user.is_authenticated %}
+              <a class="nav-item nav-link" href="{% url 'profile' %}">My Profile</a>
+              <a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a>
+            {% else %}
+              <a class="nav-item nav-link" href="{% url 'register' %}">Register</a>
+              <a class="nav-item nav-link" href="{% url 'login' %}">Login</a>
+            {% endif %}
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<main role="main" class="container">
+  <div class="row">
+    <div class="col-md-12">
+      {% block content %}{% endblock %}
+    </div>
+  </div>
+</main>
+
+
+<div class="container">
+{%  block body %}
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+</div>
+
+</body>
+</html>

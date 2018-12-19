@@ -1,0 +1,25 @@
+<title>Login</title>
+{% extends 'games/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block body %}
+
+<div class="content-section">
+    <h1>Log In</h1>
+
+    <form method="POST">
+        {% csrf_token %}
+        <fieldset class="form-group"><legend class="border-bottom mb-4">Log In</legend></fieldset>
+        {{ form|crispy }}
+        <div class="form-group">
+        <button class-"btn btn-outline-info" type="submit">Log In</button>
+        </div>
+    </form>
+
+    <div class="border-top pt-3">
+        <small class="text-muted">Don't already have an account?<a class="ml-2" href="{% url 'register' %} }">Sign up here</a></small>
+    </div>
+
+</div>
+
+{%  endblock %}
