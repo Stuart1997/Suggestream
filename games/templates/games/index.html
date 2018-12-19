@@ -10,39 +10,25 @@
 <body>
 
 {%  block body %}
-<div id="wholePage">
+<div>
 
-{% if game_list %}
-<table class="table">
-    <!--Sets up headings-->
-    <thead class="thead-dark">
-    <tr>
-      <th scope="col">Album</th>
-      <th scope="col">Artist</th>
-      <th scope="col">Genre</th>
-      <th scope="col">Detail Page</th>
-    </tr>
-    </thead>
-
-    {% for game in game_list %}
-    <tbody>
-    <tr>
-        <td>{{ game.name }}</td>
-        <td>{{ game.name }}</td>
-        <td>{{ game.name }}</td>
-        <td><a href="{% url 'games:detail' game.id %}">Click for more details</a></td>
-        </tr>
-    {% endfor %}
-    </tbody>
-</table>
-
-
-{% else %}
-    <p>No games found!</p>
-{% endif %}
+<form action="{% url 'all-alphabetical' %}">
+    <button type="submit" class="btn btn-primary btn-lg btn-block">Recommended For You (Alphabetically)</button>
+</form>
+    <form action="{% url 'all-alphabetical' %}">
+    <button type="submit" class="btn btn-primary btn-lg btn-block">Genre Search (Alphabetically)</button>
+</form>
+<form action="{% url 'all-metacritic' %}">
+    <button type="submit" class="btn btn-primary btn-lg btn-block">Title Search (By Rating)</button>
+</form>
+<form action="{% url 'all-alphabetical' %}">
+    <button type="submit" class="btn btn-primary btn-lg btn-block">All Games (Alphabetically)</button>
+</form>
 
 </div>
 {%  endblock %}
+
+
 
 </body>
 </html>

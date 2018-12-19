@@ -18,17 +18,19 @@ from django.contrib import admin
 from django.contrib.auth import views as auth_views
 from django.conf import settings
 from django.conf.urls.static import static
-from games import views as account_views
+from games import views as game_views
 
 
 urlpatterns = [
-    path('', account_views.login_redirect, name='login_redirect'),
-    path('admin/', admin.site.urls),
-    path('games/', include('games.urls', namespace='games')),
-    path('register/', account_views.register, name='register'),
+    path('', game_views.login_redirect, name='login_redirect'),
+    path('home/', include('games.urls', namespace='home')),
+    path('games-alphabetical/', game_views.GamesPage.as_view(), name='all-alphabetical'),
+    path('games-rating/', game_views.GamesPageMetacritic.as_view(), name='all-metacritic'),
+    path('register/', game_views.register, name='register'),
     path('login/', auth_views.LoginView.as_view(template_name='games/login.html'), name='login'),
     path('logout/', auth_views.LogoutView.as_view(template_name='games/logout.html'), name='logout'),
-    path('profile/', account_views.profile, name='profile'),
+    path('profile/', game_views.profile, name='profile'),
+    path('admin/', admin.site.urls),
 ]
 
 if settings.DEBUG:

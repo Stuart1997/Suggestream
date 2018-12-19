@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Games</title>
+    {% extends 'games/base.html' %}
+
+</head>
+<body>
+
+{%  block body %}
+<div>
+
+{% if game_list %}
+<table class="table">
+    <!--Sets up headings-->
+    <thead class="thead-dark">
+    <tr>
+      <th scope="col"></th>
+      <th scope="col">Game</th>
+      <th scope="col">Developer</th>
+      <th scope="col">Metacritic</th>
+      <th scope="col">More Details</th>
+    </tr>
+    </thead>
+
+    {% for game in game_list %}
+    <tbody>
+    <tr>
+        <td><img src="{{ game.image }}"></td>
+        <td>{{ game.name }}</td>
+        <td>{{ game.developer }}</td>
+
+        {% if game.metacritic == 0 %}
+            <td>N/A</td>
+        {% else %}
+            <td>{{ game.metacritic }}</td>
+        {% endif %}
+
+        <td><a href="{% url 'games:detail' game.id %}">Click for more details</a></td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+
+{% else %}
+    <p>No games found!</p>
+{% endif %}
+
+</div>
+{%  endblock %}
+
+</body>
+</html>

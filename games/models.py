@@ -14,12 +14,13 @@ class Game(models.Model):
     name = models.CharField(max_length=100, unique=True)
     description = models.CharField(max_length=500)
     developer = models.CharField(max_length=100)
-    release_date = models.CharField(max_length=12)
+    release_date = models.DateField()
     metacritic = models.IntegerField()
-    image = models.CharField(max_length=1000)
+    image = models.CharField(max_length=1000, default="https://steamstore-a.akamaihd.net/public/shared/images/responsive/share_steam_logo.png")
+    steam = models.CharField(max_length=1000, default="https://store.steampowered.com/")
     genres = models.ManyToManyField(Genre)
 
-    # Whenever an album is added, it'll give it a pk, and go to detail view
+    # Whenever a game is added, it'll give it a pk, and go to detail view
     #def get_absolute_url(self):
     #    return reverse('game:detail', kwargs={'pk': self.pk})
 

@@ -11,22 +11,34 @@
 <div id="wholePage">
 
     <h1>{{ game.name }}</h1>
-    <h3>{{ game.name }}</h3>
+    <h3>{{ game.developer }}</h3><br>
+    <img src="{{ game.image }}"><br><br>
+    <p>{{ game.description }}</p>
+    <p>Release Date: {{ game.release_date }}</p>
+    <p>Metacritic:
+    {% if game.metacritic == 0 %}
+            N/A
+    {% else %}
+        {{ game.metacritic }}
+    {% endif %}
+    </p>
+    <p>Genres:
+    {% for gen in game.genres.all %}
+        {{ gen }},
+    {% endfor %}
+    </p>
+    <p><a href="{{ game.steam }}">Steam Page</a></p><br><br>
+
+    {% comment %}<iframe
+    src="https://clips.twitch.tv/embed?clip={{  }}" <!--Clip url, e.g. EmpathicAwkwardPorcupineGingerPower-->
+    height="720" width="1280"
+    frameborder="0" scrolling="no" allowfullscreen="true">
+    </iframe>{% endcomment %}
+
 
     {% if errorMessage %}
         <p>{{ errorMessage }}</p>
     {% endif %}
-
-    <!-- Where to send album data to -->
-    {% csrf_token %} <!--Security-->
-    {% for genre in game.genres_set.all %}
-        <input type="radio" id="song{{ forloop.counter }}" name="song" value="{{ genre.id }}"/>
-
-        <label for="genre{{ forloop.counter }}">
-            {{ genre.name }}
-        </label><br>
-
-    {% endfor %}
 
 </div>
 {% endblock %}

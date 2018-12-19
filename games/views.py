@@ -8,18 +8,30 @@ from django.views.generic import View
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from .models import Game
+from .models import Game, Genre
 from .forms import UserForm
 from .forms import UserRegisterForm
 
 
 # Displays all results as a listview on the index page
-class IndexPage(generic.ListView):
-    template_name = 'games/index.html'
+def home(request):
+    return render(request, 'games/index.html')
+
+
+class GamesPage(generic.ListView):
+    template_name = 'games/allgames.html'
     context_object_name = 'game_list'
 
     def get_queryset(self):
-        return Game.objects.all()
+        return Game.objects.order_by("name")
+
+
+class GamesPageMetacritic(generic.ListView):
+    template_name = 'games/allgames.html'
+    context_object_name = 'game_list'
+
+    def get_queryset(self):
+        return Game.objects.order_by("-metacritic")
 
 
 # Displays all information about a single game on a detail page
