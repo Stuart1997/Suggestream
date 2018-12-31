@@ -3,13 +3,22 @@ from django.urls import reverse
 from django.contrib.auth.models import User
 from datetime import date
 
+#https://www.youtube.com/watch?v=iJCbYMgUDW8  USERFOREIGNKEY MIDDLEWARE
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+    twod = models.IntegerField(default=0)
+    action = models.IntegerField(default=0)
+    adventure = models.IntegerField(default=0)
+    arcade = models.IntegerField(default=0)
+    building = models.IntegerField(default=0)
+    cartoon = models.IntegerField(default=0)
+    city_builder = models.IntegerField(default=0)
+    class_based = models.IntegerField(default=0)
     #date_of_birth = models.DateField(default=date.today)
 
     def __str__(self):
-        return self.user
+        return self.user.username
 
 
 class Genre(models.Model):
@@ -42,7 +51,7 @@ class GUser(models.Model):
     name = models.CharField(max_length=100, unique=True)
 '''
 
-
+'''
 class UserPreferences(models.Model):
     user = models.ForeignKey(Profile, on_delete=models.CASCADE)
     twod = models.IntegerField()
@@ -53,7 +62,7 @@ class UserPreferences(models.Model):
     cartoon = models.IntegerField()
     city_builder = models.IntegerField()
     class_based = models.IntegerField()
-
+'''
 
 #game = Game.objects.get(id=2)
 #for genre in game.genres.all().order_by('pref_count')[0:5]:

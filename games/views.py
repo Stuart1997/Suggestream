@@ -8,7 +8,7 @@ from django.views.generic import View
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from .models import Game, Genre
+from .models import Game, Genre, Profile
 from .forms import UserRegisterForm
 
 
