@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Search By Genre</title>
+    {% extends 'games/base.html' %}
+
+</head>
+<body>
+
+{%  block body %}
+<div>
+
+<h1>Search By Genre</h1>
+{% if genre_list %}
+
+<div class="btn-group">
+  <button class="btn btn-secondary btn-lg dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Select Genre</button>
+  <div class="dropdown-menu scrollable-menu">
+      {% for genre in genre_list %}
+      <a class="dropdown-item" href="#">{{ genre.name }}</a>
+      {% endfor %}
+  </div>
+</div>
+
+{% endif %}
+</div>
+{%  endblock %}
+
+
+
+</body>
+</html>

@@ -9,7 +9,6 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from .models import Game, Genre
-from .forms import UserForm
 from .forms import UserRegisterForm
 
 
@@ -18,7 +17,28 @@ def home(request):
     return render(request, 'games/index.html')
 
 
-class GamesPage(generic.ListView):
+#TODO make this look at user's top X preferences
+def recommended(request):
+    return render(request, 'games/recommended.html')
+
+
+class GenreSearch(generic.ListView):
+    template_name = 'games/genresearch.html'
+    context_object_name = 'genre_list'
+
+    def get_queryset(self):
+        return Genre.objects.order_by("name")
+
+
+class TitleSearch(generic.ListView):
+    template_name = 'games/titlesearch.html'
+    context_object_name = 'game_list'
+
+    def get_queryset(self):
+        return Game.objects.order_by("name")
+
+
+class GamesPageAlphabetically(generic.ListView):
     template_name = 'games/allgames.html'
     context_object_name = 'game_list'
 
@@ -26,7 +46,7 @@ class GamesPage(generic.ListView):
         return Game.objects.order_by("name")
 
 
-class GamesPageMetacritic(generic.ListView):
+class GamesPageByRating(generic.ListView):
     template_name = 'games/allgames.html'
     context_object_name = 'game_list'
 
@@ -38,43 +58,6 @@ class GamesPageMetacritic(generic.ListView):
 class DetailPage(generic.DetailView):
     model = Game
     template_name = 'games/detail.html'
-
-
-class UserFormView(View):
-    form_class = UserForm
-    template_name = 'games/registration_form.html'
-
-    # Display blank form
-    def get(self, request):
-        form = self.form_class(None)
-        return render(request, self.template_name, {'form': form})
-
-    # Submit form data
-    def post(self, request):
-        form = self.form_class(request.POST)
-
-        if form.is_valid():
-            user = form.save(commit=False)  # Creates object from form without saving to db
-
-            # Cleaned/normalised data - formatted properly
-            username = form.cleaned_data['username']
-            password = form.cleaned_data['password']
-            email = form.cleaned_data['email']
-            first_name = form.cleaned_data['first_name']
-            last_name = form.cleaned_data['last_name']
-
-            user.set_password(password)  # Handles hashed password instead of plaintext
-            user.save()  # Saves to db
-
-            # Returns User objects if credentials are correct
-            user = authenticate(username=username, password=password)  # Checks if they exist in db
-
-            if user is not None:
-                if user.is_active:
-                    login(request, user)
-                    return redirect('games:index')
-
-        return render(request, self.template_name, {'form': form})
 
 
 def register(request):
@@ -99,7 +82,7 @@ def profile(request):
 
 #If the url doesn't have anything after the slash, redirect them to the login page
 def login_redirect(request):
-    return redirect('games:index')
+    return redirect('games:login')
 
 
 def login_prompt(request):

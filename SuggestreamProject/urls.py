@@ -24,8 +24,11 @@ from games import views as game_views
 urlpatterns = [
     path('', game_views.login_redirect, name='login_redirect'),
     path('home/', include('games.urls', namespace='home')),
-    path('games-alphabetical/', game_views.GamesPage.as_view(), name='all-alphabetical'),
-    path('games-rating/', game_views.GamesPageMetacritic.as_view(), name='all-metacritic'),
+    path('games-alphabetical/', game_views.GamesPageAlphabetically.as_view(), name='all-alphabetical'),
+    path('games-rating/', game_views.GamesPageByRating.as_view(), name='all-metacritic'),
+    path('recommended/', game_views.recommended, name='recommended'),
+    path('genre-search/', game_views.GenreSearch.as_view(), name='genre-search'),
+    path('title-search/', game_views.TitleSearch.as_view(), name='title-search'),
     path('register/', game_views.register, name='register'),
     path('login/', auth_views.LoginView.as_view(template_name='games/login.html'), name='login'),
     path('logout/', auth_views.LogoutView.as_view(template_name='games/logout.html'), name='logout'),

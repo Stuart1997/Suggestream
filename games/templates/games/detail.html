@@ -23,8 +23,8 @@
     {% endif %}
     </p>
     <p>Genres:
-    {% for gen in game.genres.all %}
-        {{ gen }},
+    {% for genre in game.genres.all %}
+        {{ genre }},
     {% endfor %}
     </p>
     <p><a href="{{ game.steam }}">Steam Page</a></p><br><br>

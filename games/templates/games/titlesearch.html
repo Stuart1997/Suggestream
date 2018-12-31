@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Search By Title</title>
+    {% extends 'games/base.html' %}
+
+</head>
+<body>
+
+{%  block body %}
+<div>
+
+<h1>Search By Title</h1>
+{% if game_list %}
+
+<div class="btn-group">
+  <button class="btn btn-secondary btn-lg dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Select Title</button>
+  <div class="dropdown-menu scrollable-menu">
+      {% for game in game_list %}
+      <a class="dropdown-item" href="#">{{ game.name }}</a>
+      {% endfor %}
+  </div>
+</div>
+
+
+{% endif %}
+
+</div>
+{%  endblock %}
+
+
+
+</body>
+</html>

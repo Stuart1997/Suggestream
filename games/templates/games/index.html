@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Games</title>
+    <title>Home</title>
     {% extends 'games/base.html' %}
 
 </head>
@@ -12,15 +12,18 @@
 {%  block body %}
 <div>
 
-<form action="{% url 'all-alphabetical' %}">
-    <button type="submit" class="btn btn-primary btn-lg btn-block">Recommended For You (Alphabetically)</button>
-</form>
-    <form action="{% url 'all-alphabetical' %}">
-    <button type="submit" class="btn btn-primary btn-lg btn-block">Genre Search (Alphabetically)</button>
-</form>
+<form action="{% url 'recommended' %}">
+    <button type="submit" class="btn btn-primary btn-lg btn-block">Recommended For You</button>
+</form><br>
+    <form action="{% url 'genre-search' %}">
+    <button type="submit" class="btn btn-primary btn-lg btn-block">Search By Genre</button>
+</form><br>
+<form action="{% url 'title-search' %}">
+    <button type="submit" class="btn btn-primary btn-lg btn-block">Title Search</button>
+</form><br>
 <form action="{% url 'all-metacritic' %}">
-    <button type="submit" class="btn btn-primary btn-lg btn-block">Title Search (By Rating)</button>
-</form>
+    <button type="submit" class="btn btn-primary btn-lg btn-block">All Games (By Rating)</button>
+</form><br>
 <form action="{% url 'all-alphabetical' %}">
     <button type="submit" class="btn btn-primary btn-lg btn-block">All Games (Alphabetically)</button>
 </form>

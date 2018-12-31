@@ -1,6 +1,15 @@
 from django.db import models
 from django.urls import reverse
 from django.contrib.auth.models import User
+from datetime import date
+
+
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    #date_of_birth = models.DateField(default=date.today)
+
+    def __str__(self):
+        return self.user
 
 
 class Genre(models.Model):
@@ -31,13 +40,20 @@ class Game(models.Model):
 '''
 class GUser(models.Model):
     name = models.CharField(max_length=100, unique=True)
-
-
-class GUserPref(models.Model):
-    user = models.ForeignKey(GUser, on_delete=models.CASCADE)
-    pref_count = models.IntegerField()
-    genre = models.ForeignKey(Genre, related_name='genres')
 '''
+
+
+class UserPreferences(models.Model):
+    user = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    twod = models.IntegerField()
+    action = models.IntegerField()
+    adventure = models.IntegerField()
+    arcade = models.IntegerField()
+    building = models.IntegerField()
+    cartoon = models.IntegerField()
+    city_builder = models.IntegerField()
+    class_based = models.IntegerField()
+
 
 #game = Game.objects.get(id=2)
 #for genre in game.genres.all().order_by('pref_count')[0:5]:
