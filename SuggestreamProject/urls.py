@@ -1,18 +1,3 @@
-"""SuggestreamProject URL Configuration
-
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/2.1/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  path('', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.urls import include, path
-    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
-"""
 from django.urls import include, path
 from django.contrib import admin
 from django.contrib.auth import views as auth_views
@@ -28,6 +13,7 @@ urlpatterns = [
     path('games-rating/', game_views.GamesPageByRating.as_view(), name='all-metacritic'),
     path('recommended/', game_views.recommended, name='recommended'),
     path('genre-search/', game_views.GenreSearch.as_view(), name='genre-search'),
+    path('genre-results/', game_views.GamesPageByGenre.as_view(), name='genre-results'),
     path('title-search/', game_views.TitleSearch.as_view(), name='title-search'),
     path('register/', game_views.register, name='register'),
     path('login/', auth_views.LoginView.as_view(template_name='games/login.html'), name='login'),

@@ -22,26 +22,30 @@ class UserRegisterForm(UserCreationForm):
     email = forms.EmailField(required=True)
     first_name = forms.CharField(required=True, max_length=50)
     last_name = forms.CharField(required=True, max_length=50)
-    #date_of_birth = forms.DateField(required=True, input_formats=settings.DATE_INPUT_FORMATS, widget=forms.SelectDateWidget(years=BIRTH_YEAR_CHOICES))
 
     class Meta:
         model = User
-        #fields = ['username', 'email', 'first_name', 'last_name', 'date_of_birth', 'password1', 'password2']
         fields = ['username', 'email', 'first_name', 'last_name', 'password1', 'password2']
 
-    '''
-    def save(self, commit=True):
-        print("222222222")
-        print(type(self))
-        print("222222222")
-        print(self)
-        print("222222222")
-        date_of_birth_field = self.pop('date_of_birth', None)
-        print("22222222222 - " + date_of_birth_field)
 
+    #8 MINUTES INTO PART 16 OF MAX GOODRIDGE VIDEOS - clean data
+    def save(self, commit=True):
         user = super(UserRegisterForm, self).save(commit)
-        Profile.objects.create(date_of_birth=date_of_birth_field)
         return user
-    '''
+
+
+#http://www.re-cycledair.com/extending-djangos-model-save-method
+
+class ProfileForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = ('user',
+                  'twod', 'action', 'adventure', 'arcade', 'building', 'cartoon', 'city_builder', 'class_based', 'coop', 'comedy',
+                  'competitive', 'crafting', 'destruction', 'difficult', 'driving', 'dystopian', 'fantasy', 'fighting', 'first_person',
+                  'fps', 'free_to_play', 'futuristic', 'historical', 'horror', 'indie', 'magic', 'medieval', 'military', 'moba',
+                  'multiplayer', 'open_world', 'post_apocalyptic', 'procedural_generation', 'puzzle', 'racing', 'rpg', 'rts',
+                  'sandbox', 'scifi', 'shooter', 'side_scroller', 'singleplayer', 'soccer', 'space', 'sports', 'stealth', 'strategy',
+                  'survival', 'third_person', 'tower_defence', 'vr', 'war', 'zombie')
+
 
 #https://stackoverflow.com/questions/3523745/best-way-to-do-register-a-user-in-django/17005485#17005485

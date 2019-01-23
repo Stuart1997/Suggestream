@@ -7,7 +7,24 @@
     <p>
     {{ user.first_name }} {{ user.last_name }}, your email address is {{ user.email }}
     </p>
-    <p>Your action rating is: {{ user.profile.action }}</p>
 
+
+    <h1>Preferences</h1>
+    <!--Goes through the user's preferences that are passed in from the view,
+        orders them from highest to lowest, if they're not 0 then capitalise
+        the genre's name and print it.-->
+    {% for field, value in preferences.items|dictsortreversed:1 %}
+        {% if value > 0 and field != 'id' and field != 'user' %}
+            <p>{{ field|capfirst }} = {{ value }}</p>
+        {% endif %}
+    {% endfor %}
+
+    <!--COULD USE |RANDOM FOR SERENDIPITY-->
+
+
+{#    <p>Your action rating is: {{ user.profile.action }}</p>#}
+{#    <p>Your twod rating is: {{ user.profile.twod }}</p>#}
+{#    <p>Your building rating is: {{ user.profile.building }}</p>#}
+{#    <p>Your cartoon rating is: {{ user.profile.cartoon }}</p>#}
 
 {%  endblock %}

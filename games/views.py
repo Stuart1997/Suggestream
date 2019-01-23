@@ -9,7 +9,8 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from .models import Game, Genre, Profile
-from .forms import UserRegisterForm
+from .forms import UserRegisterForm, ProfileForm
+from django.forms.models import model_to_dict
 
 
 # Displays all results as a listview on the index page
@@ -54,6 +55,16 @@ class GamesPageByRating(generic.ListView):
         return Game.objects.order_by("-metacritic")
 
 
+class GamesPageByGenre(generic.ListView):
+    template_name = 'games/allgames.html'
+    context_object_name = 'game_list'
+
+    def get_queryset(self):
+        #Return games that include the genre id of x, 1 = 2d, 2 = action, etc.
+        return Game.objects.filter(genres__id=5)
+        #return Game.objects.all().prefetch_related('genres')
+
+
 # Displays all information about a single game on a detail page
 class DetailPage(generic.DetailView):
     model = Game
@@ -63,22 +74,25 @@ class DetailPage(generic.DetailView):
 def register(request):
     if request.method == 'POST':
         form = UserRegisterForm(request.POST)
+        profileform = ProfileForm(request.POST)
+
         if form.is_valid():
-            form.save()
-            username = form.cleaned_data.get('username')
+            user = form.save()
+            user.profile.save()
             messages.success(request, 'Account created!')
             return redirect('login')
     else:
         form = UserRegisterForm()
-    return render(request, 'games/register.html', {'form': form})    #Refer to the form object within the next page
+
+    args = {'form': form}
+    return render(request, 'games/register.html', args)
 
 
 #Prevents this view from being accessed if the user isn't logged in
 @login_required
 def profile(request):
-    args = {'user': request.user}
-    return render(request, 'games/profile.html', args)
-
+    preferences = model_to_dict(request.user.profile)
+    return render(request, 'games/profile.html', {'preferences': preferences})
 
 #If the url doesn't have anything after the slash, redirect them to the login page
 def login_redirect(request):
