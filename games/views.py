@@ -60,9 +60,12 @@ class GamesPageByGenre(generic.ListView):
     context_object_name = 'game_list'
 
     def get_queryset(self):
-        #Return games that include the genre id of x, 1 = 2d, 2 = action, etc.
-        return Game.objects.filter(genres__id=5)
-        #return Game.objects.all().prefetch_related('genres')
+        #Return games whose genres include the genre id x
+        #return Game.objects.filter(genres__id=10)  /   return Game.objects.all().prefetch_related('genres')
+
+        #Grabs the genre ID from the GenreSearch URL query to use to filter
+        genre_id = self.request.GET.get("genre")
+        return Game.objects.filter(genres__name=str(genre_id))
 
 
 # Displays all information about a single game on a detail page

@@ -19,7 +19,9 @@
   <button class="btn btn-secondary btn-lg dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Select Genre</button>
   <div class="dropdown-menu scrollable-menu">
       {% for genre in genre_list %}
-      <a class="dropdown-item" href="#">{{ genre.name }}</a>
+        <!--For each item in the list of genres, populate the dropdown box with them.
+            The ? in the href indicates a query, genre is the name of variable, genre.id is the variable value-->
+        <a class="dropdown-item" href="{% url 'genre-results' %}?genre={{ genre.name }}">{{ genre.name }}</a>
       {% endfor %}
   </div>
 </div>
@@ -27,8 +29,6 @@
 {% endif %}
 </div>
 {%  endblock %}
-
-
 
 </body>
 </html>
