@@ -22,6 +22,27 @@
     <!--COULD USE |RANDOM FOR SERENDIPITY-->
 
 
+    <table class="table">
+    <!--Sets up headings-->
+    <thead class="thead-dark">
+    <tr>
+      <th scope="col">Genre</th>
+      <th scope="col">Score</th>
+    </tr>
+    </thead>
+
+    {% for field, value in preferences.items|dictsortreversed:1 %}
+    <tbody>
+    <tr>
+        <td>{{ field }}</td>
+        <td>{{ value }}</td>
+
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+
 {#    <p>Your action rating is: {{ user.profile.action }}</p>#}
 {#    <p>Your twod rating is: {{ user.profile.twod }}</p>#}
 {#    <p>Your building rating is: {{ user.profile.building }}</p>#}

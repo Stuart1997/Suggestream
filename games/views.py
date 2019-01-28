@@ -63,8 +63,55 @@ class GamesPageByGenre(generic.ListView):
         #Return games whose genres include the genre id x
         #return Game.objects.filter(genres__id=10)  /   return Game.objects.all().prefetch_related('genres')
 
-        #Grabs the genre ID from the GenreSearch URL query to use to filter
+        #Grabs the genre name and user's ID from the GenreSearch URL query, these are used to query all games with
+        #the selected genre, and to then grab the profile of the currently logged in user to increment their preferences
         genre_id = self.request.GET.get("genre")
+        user_id = self.request.GET.get("userid")
+        user = Profile.objects.get(user_id=user_id)
+        print("-----------------------------------")
+        print("User = ", user)
+        print("Genre = ", genre_id)
+        print("User ID = ", user_id)
+        print()
+
+        #Replaces spaces with underscores as genres like "Class based" are "class_based" in preferences
+        if " " in genre_id:
+            edited = genre_id.replace(" ", "_")
+            genreToUpdate = edited.lower()
+        else:
+            edited = genre_id
+            genreToUpdate = edited.lower()
+
+        print("Genre to update lowercase: ", genreToUpdate)
+
+        #Discrepencies to the correction above are all handled here to ensure the game genre and
+        #user profile genre preferences match
+        if genreToUpdate == "2d":
+            genreToUpdate = "twod"
+        elif genreToUpdate == "class-based":
+            genreToUpdate = "class_based"
+        elif genreToUpdate == "co-op":
+            genreToUpdate = "coop"
+        elif genreToUpdate == "post-apocalyptic":
+            genreToUpdate = "post_apocalyptic"
+        elif genreToUpdate == "sci-fi":
+            genreToUpdate = "scifi"
+
+        print("Genre to update after validation: ", genreToUpdate)
+
+        #Dynamically retrieves the user's preference value of the queried genre
+        retrieve = getattr(user, genreToUpdate)
+        print("Profile value: ", genreToUpdate, " = ", retrieve)
+
+        #Sets this queried genre to +1 of what it already was to learn they've shown interest in this genre
+        setattr(user, genreToUpdate, retrieve + 1)
+
+        #Save this change in the database
+        user.save()
+
+        print("User's ", genreToUpdate, " after incrementing = ", getattr(user, genreToUpdate))
+
+        #Once the preferences have been updated, retrieve all games that match the genre they selected
         return Game.objects.filter(genres__name=str(genre_id))
 
 

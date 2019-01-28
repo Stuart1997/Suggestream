@@ -12,6 +12,7 @@
 {%  block body %}
 <div>
 
+
 <h1>Search By Genre</h1>
 {% if genre_list %}
 
@@ -21,7 +22,7 @@
       {% for genre in genre_list %}
         <!--For each item in the list of genres, populate the dropdown box with them.
             The ? in the href indicates a query, genre is the name of variable, genre.id is the variable value-->
-        <a class="dropdown-item" href="{% url 'genre-results' %}?genre={{ genre.name }}">{{ genre.name }}</a>
+        <a class="dropdown-item" href="{% url 'genre-results' %}?genre={{ genre.name }}&userid={{ user.id }}">{{ genre.name }}</a>
       {% endfor %}
   </div>
 </div>
