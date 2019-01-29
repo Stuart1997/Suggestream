@@ -85,8 +85,8 @@ class Game(models.Model):
 
     def __str__(self):
         # Game.objects.all().prefetch_related('genres')
-        return "%s (%s)" % (self.name, ", ".join(genre.name for genre in self.genres.all()),)
-        # return self.name
+        #return "%s (%s)" % (self.name, ", ".join(genre.name for genre in self.genres.all()),)
+        return self.name
 
 '''
 class GUser(models.Model):

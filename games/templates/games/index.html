@@ -12,10 +12,7 @@
 {%  block body %}
 <div>
 
-<form action="`">
-    <button type="submit" class="btn btn-primary btn-lg btn-block">Recommended For You</button>
-</form><br>
-    <form action="{% url 'genre-search' %}">
+<form action="{% url 'genre-search' %}">
     <button type="submit" class="btn btn-primary btn-lg btn-block">Search By Genre</button>
 </form><br>
 <form action="{% url 'title-search' %}">

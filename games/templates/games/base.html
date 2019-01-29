@@ -26,7 +26,7 @@
         <div class="navbar-nav mr-auto">
           {% comment %}<a class="nav-item nav-link" href="{% url 'games:index' %}">Home</a>
           <a class="nav-item nav-link" href="#">About</a>{% endcomment %}
-                      <a class="nav-item nav-link" href="{% url 'recommended' %}">Recommended For You</a>
+                      <a class="nav-item nav-link" href="{% url 'recommended' %}?userid={{ user.id }}">Recommended For You</a>
                       <a class="nav-item nav-link" href="{% url 'genre-search' %}">Search By Genre</a>
                       <a class="nav-item nav-link" href="{% url 'title-search' %}">Search By Title</a>
 

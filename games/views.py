@@ -11,16 +11,12 @@ from django.contrib.auth.models import User
 from .models import Game, Genre, Profile
 from .forms import UserRegisterForm, ProfileForm
 from django.forms.models import model_to_dict
-
+from operator import itemgetter
+from itertools import chain
 
 # Displays all results as a listview on the index page
 def home(request):
     return render(request, 'games/index.html')
-
-
-#TODO make this look at user's top X preferences
-def recommended(request):
-    return render(request, 'games/recommended.html')
 
 
 class GenreSearch(generic.ListView):
@@ -56,63 +52,125 @@ class GamesPageByRating(generic.ListView):
 
 
 class GamesPageByGenre(generic.ListView):
-    template_name = 'games/allgames.html'
+    template_name = 'games/genresearchresults.html'
     context_object_name = 'game_list'
 
     def get_queryset(self):
-        #Return games whose genres include the genre id x
-        #return Game.objects.filter(genres__id=10)  /   return Game.objects.all().prefetch_related('genres')
-
         #Grabs the genre name and user's ID from the GenreSearch URL query, these are used to query all games with
         #the selected genre, and to then grab the profile of the currently logged in user to increment their preferences
-        genre_id = self.request.GET.get("genre")
+        genre_name = self.request.GET.get("genre")
         user_id = self.request.GET.get("userid")
-        user = Profile.objects.get(user_id=user_id)
-        print("-----------------------------------")
-        print("User = ", user)
-        print("Genre = ", genre_id)
-        print("User ID = ", user_id)
-        print()
 
-        #Replaces spaces with underscores as genres like "Class based" are "class_based" in preferences
-        if " " in genre_id:
-            edited = genre_id.replace(" ", "_")
-            genreToUpdate = edited.lower()
-        else:
-            edited = genre_id
-            genreToUpdate = edited.lower()
+        #If the user isn't logged in then their preferences can't be updated
+        if user_id != None:
+            user = Profile.objects.get(user_id=user_id)
+            print("-----------------------------------")
+            print("User = ", user)
+            print("Genre = ", genre_name)
+            print("User ID = ", user_id)
+            print()
 
-        print("Genre to update lowercase: ", genreToUpdate)
+            #Replaces spaces with underscores as genres like "Class based" are "class_based" in preferences
+            if " " in genre_name:
+                edited = genre_name.replace(" ", "_")
+                genreToUpdate = edited.lower()
+            else:
+                edited = genre_name
+                genreToUpdate = edited.lower()
 
-        #Discrepencies to the correction above are all handled here to ensure the game genre and
-        #user profile genre preferences match
-        if genreToUpdate == "2d":
-            genreToUpdate = "twod"
-        elif genreToUpdate == "class-based":
-            genreToUpdate = "class_based"
-        elif genreToUpdate == "co-op":
-            genreToUpdate = "coop"
-        elif genreToUpdate == "post-apocalyptic":
-            genreToUpdate = "post_apocalyptic"
-        elif genreToUpdate == "sci-fi":
-            genreToUpdate = "scifi"
+            print("Genre to update lowercase: ", genreToUpdate)
 
-        print("Genre to update after validation: ", genreToUpdate)
+            #Discrepencies to the correction above are all handled here to ensure the game genre and
+            #user profile genre preferences match
+            if genreToUpdate == "2d":
+                genreToUpdate = "twod"
+            elif genreToUpdate == "class-based":
+                genreToUpdate = "class_based"
+            elif genreToUpdate == "co-op":
+                genreToUpdate = "coop"
+            elif genreToUpdate == "post-apocalyptic":
+                genreToUpdate = "post_apocalyptic"
+            elif genreToUpdate == "sci-fi":
+                genreToUpdate = "scifi"
 
-        #Dynamically retrieves the user's preference value of the queried genre
-        retrieve = getattr(user, genreToUpdate)
-        print("Profile value: ", genreToUpdate, " = ", retrieve)
+            print("Genre to update after validation: ", genreToUpdate)
 
-        #Sets this queried genre to +1 of what it already was to learn they've shown interest in this genre
-        setattr(user, genreToUpdate, retrieve + 1)
+            #Dynamically retrieves the user's preference value of the queried genre
+            retrieve = getattr(user, genreToUpdate)
+            print("Profile value: ", genreToUpdate, " = ", retrieve)
 
-        #Save this change in the database
-        user.save()
+            #Sets this queried genre to +1 of what it already was to learn they've shown interest in this genre
+            setattr(user, genreToUpdate, retrieve + 1)
 
-        print("User's ", genreToUpdate, " after incrementing = ", getattr(user, genreToUpdate))
+            #Save this change in the database
+            user.save()
+            print("User's ", genreToUpdate, " after incrementing = ", getattr(user, genreToUpdate))
 
-        #Once the preferences have been updated, retrieve all games that match the genre they selected
-        return Game.objects.filter(genres__name=str(genre_id))
+        #Once either the preferences have been updated or if there is no user ID, retrieve all games that match the genre they selected
+        print("GENRE NAME = ", genre_name)
+        return Game.objects.filter(genres__name=str(genre_name))
+
+    #TODO FOR MULTI GENRE SEARCH - return Game.objects.filter(genres__name=str('Action')).filter(genres__name=str('Side Scroller'))
+
+
+class Recommended(generic.ListView):
+    template_name = 'games/recommended.html'
+    context_object_name = 'game_list'
+
+    def get_queryset(self):
+        user_id = self.request.GET.get("userid")
+
+        if user_id != None:
+            user = Profile.objects.get(user_id=user_id)
+
+            listOfGenres = ['twod', 'action', 'adventure', 'arcade', 'building', 'cartoon', 'city_builder', 'class_based', 'coop', 'comedy',
+                            'competitive', 'crafting', 'destruction', 'difficult', 'driving', 'dystopian', 'fantasy', 'first_person',
+                            'fps', 'free_to_play', 'futuristic', 'historical', 'horror', 'indie', 'magic', 'medieval', 'military', 'moba',
+                            'multiplayer', 'open_world', 'post_apocalyptic', 'procedural_generation', 'puzzle', 'racing', 'rpg', 'rts',
+                            'sandbox', 'scifi', 'shooter', 'side_scroller', 'singleplayer', 'soccer', 'space', 'sports', 'stealth', 'strategy',
+                            'survival', 'third_person', 'tower_defence', 'vr', 'war', 'zombie']
+
+            listOfPreferences = []
+            for genre in listOfGenres: listOfPreferences.append(getattr(user, genre))
+
+            userPreferences = list(zip(listOfGenres, listOfPreferences))
+            userPreferences.sort(key=itemgetter(1), reverse=True)
+            print("Top 3 genres:", userPreferences[0], userPreferences[1], userPreferences[2])
+
+            listOfValidatedGenres = []
+
+            #For their top 3 genres, ensure the case and spacing is correctly formatted
+            for name in range(3):
+                currentGenre = userPreferences[name][0]
+
+                if "_" in currentGenre:
+                    if currentGenre == "post_apocalyptic":          currentGenre = "Post-apocalyptic"
+                    elif currentGenre == "city_builder":            currentGenre = "City Builder"
+                    elif currentGenre == "free_to_play":            currentGenre = "Free To Play"
+                    elif currentGenre == "class_based":             currentGenre = "Class-based"
+                    elif currentGenre == "first_person":            currentGenre = "First Person"
+                    elif currentGenre == "open_world":              currentGenre = "Open World"
+                    elif currentGenre == "procedural_generation":   currentGenre = "Procedural Generation"
+                    elif currentGenre == "side_scroller":           currentGenre = "Side Scroller"
+                    elif currentGenre == "third_person":            currentGenre = "Third Person"
+                    elif currentGenre == "tower_defence":           currentGenre = "Tower Defence"
+
+                elif currentGenre == "twod":    currentGenre = "2D"
+                elif currentGenre == "scifi":   currentGenre = "Sci-fi"
+                elif currentGenre == "coop":    currentGenre = "Co-op"
+                elif currentGenre == "fps" or currentGenre == "rts" or currentGenre == "vr" or currentGenre == "rpg" or currentGenre == "moba":
+                    currentGenre = userPreferences[name][0].upper()
+
+                else:
+                    listOfValidatedGenres.append(currentGenre.capitalize())
+
+                #Add the corrected genre name to the list at the end of each loop
+                listOfValidatedGenres.append(currentGenre)
+
+            print("Top genre name and value:", userPreferences[0][0])
+            print("TOP 3: ", listOfValidatedGenres)
+            #Return all games that match the top 3 genres, with no duplicates
+            return Game.objects.filter(genres__name__in=[listOfValidatedGenres[0], listOfValidatedGenres[1], listOfValidatedGenres[2]]).distinct()
 
 
 # Displays all information about a single game on a detail page
