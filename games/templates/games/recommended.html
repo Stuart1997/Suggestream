@@ -14,6 +14,13 @@
 
 <h1>Recommended for you</h1>
 
+{% if recommended_genres %}
+    <h2>
+        {% for genre in recommended_genres %}
+            {{ genre }}
+        {% endfor %}
+    </h2>
+
 {% if game_list %}
 <table class="table">
     <!--Sets up headings-->
@@ -42,16 +49,24 @@
         {% endif %}
 
 
+        <!--Goes through each game's genres, when the current game has a genre which matches
+            one or more of the user's preferred genres, then put this into the 'because
+            you like' column to show which genres it is most applicable towards.-->
         {% if game.genres %}
-            <h4>{{ game.name }}</h4>
-            {% for genre in game.genres.all %}
-                <p>{{ genre }}</p>
-            {% endfor %}
-            <p>-------------------------------------</p>
-            <td>{{ game.genres.first }}</td>
+            <td>
+                {% for genre in game.genres.all %}
+                    {% for likedGenre in recommended_genres %}
+                        {% if likedGenre == genre %}
+                            {{ likedGenre }} <br><br>
+                        {% endif %}
+                    {% endfor %}
+                {% endfor %}
+            </td>
         {% else %}
-            <td>GENRE</td> <!--For game.genres any of the 3, put it here-->
+            <td>N/A</td>
         {% endif %}
+
+
         <!--The detail page requires a game ID as part of its URL, this grabs the game that is selected's ID-->
         <td><a href="{% url 'games:detail' game.id %}">Click for more details</a></td>
         </tr>
@@ -63,7 +78,7 @@
 {% else %}
     <p>No games found!</p>
 {% endif %}
-
+{% endif %}
 </div>
 {%  endblock %}
 

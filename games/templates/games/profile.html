@@ -10,17 +10,6 @@
 
 
     <h1>Preferences</h1>
-    <!--Goes through the user's preferences that are passed in from the view,
-        orders them from highest to lowest, if they're not 0 then capitalise
-        the genre's name and print it.-->
-    {% for field, value in preferences.items|dictsortreversed:1 %}
-        {% if value > 0 and field != 'id' and field != 'user' %}
-            <p>{{ field|capfirst }} = {{ value }}</p>
-        {% endif %}
-    {% endfor %}
-
-    <!--COULD USE |RANDOM FOR SERENDIPITY-->
-
 
     <table class="table">
     <!--Sets up headings-->
@@ -31,6 +20,9 @@
         </tr>
     </thead>
 
+    <!--Goes through the user's preferences that are passed in from the view,
+    orders them from highest to lowest, if they're not 0 then capitalise
+    the genre's name and print it. COULD USE |RANDOM FOR SERENDIPITY-->
     {% for field, value in preferences.items|dictsortreversed:1 %}
         {% if value > 0 and field != 'id' and field != 'user' %}
             <tbody>

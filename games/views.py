@@ -13,6 +13,7 @@ from .forms import UserRegisterForm, ProfileForm
 from django.forms.models import model_to_dict
 from operator import itemgetter
 from itertools import chain
+import random
 
 # Displays all results as a listview on the index page
 def home(request):
@@ -140,8 +141,8 @@ class Recommended(generic.ListView):
             listOfValidatedGenres = []
 
             #For their top 3 genres, ensure the case and spacing is correctly formatted
-            for name in range(3):
-                currentGenre = userPreferences[name][0]
+            for genre in range(3):
+                currentGenre = userPreferences[genre][0]
 
                 if "_" in currentGenre:
                     if currentGenre == "post_apocalyptic":          currentGenre = "Post-apocalyptic"
@@ -159,19 +160,93 @@ class Recommended(generic.ListView):
                 elif currentGenre == "scifi":   currentGenre = "Sci-fi"
                 elif currentGenre == "coop":    currentGenre = "Co-op"
                 elif currentGenre == "fps" or currentGenre == "rts" or currentGenre == "vr" or currentGenre == "rpg" or currentGenre == "moba":
-                    currentGenre = userPreferences[name][0].upper()
+                    currentGenre = userPreferences[genre][0].upper()
 
                 else:
-                    listOfValidatedGenres.append(currentGenre.capitalize())
+                    capitalised = currentGenre[0:].capitalize()
+                    currentGenre = capitalised
 
                 #Add the corrected genre name to the list at the end of each loop
                 listOfValidatedGenres.append(currentGenre)
 
             print("Top genre name and value:", userPreferences[0][0])
             print("TOP 3: ", listOfValidatedGenres)
+
             #Return all games that match the top 3 genres, with no duplicates
             return Game.objects.filter(genres__name__in=[listOfValidatedGenres[0], listOfValidatedGenres[1], listOfValidatedGenres[2]]).distinct()
 
+            #TODO Order by ? is bad practice apparently, use this https://stackoverflow.com/questions/1731346/how-to-get-two-random-records-with-django#6405601
+
+    def get_context_data(self, **kwargs):
+        context = super(Recommended, self).get_context_data(**kwargs)
+
+        user_id = self.request.GET.get("userid")
+
+        listOfValidatedGenres = []
+
+        if user_id != None:
+            user = Profile.objects.get(user_id=user_id)
+
+            listOfGenres = ['twod', 'action', 'adventure', 'arcade', 'building', 'cartoon', 'city_builder', 'class_based', 'coop', 'comedy',
+                            'competitive', 'crafting', 'destruction', 'difficult', 'driving', 'dystopian', 'fantasy', 'first_person',
+                            'fps', 'free_to_play', 'futuristic', 'historical', 'horror', 'indie', 'magic', 'medieval', 'military', 'moba',
+                            'multiplayer', 'open_world', 'post_apocalyptic', 'procedural_generation', 'puzzle', 'racing', 'rpg', 'rts',
+                            'sandbox', 'scifi', 'shooter', 'side_scroller', 'singleplayer', 'soccer', 'space', 'sports', 'stealth', 'strategy',
+                            'survival', 'third_person', 'tower_defence', 'vr', 'war', 'zombie']
+
+            listOfPreferences = []
+            for genre in listOfGenres: listOfPreferences.append(getattr(user, genre))
+
+            userPreferences = list(zip(listOfGenres, listOfPreferences))
+            userPreferences.sort(key=itemgetter(1), reverse=True)
+            print("Top 3 genres:", userPreferences[0], userPreferences[1], userPreferences[2])
+
+
+            # For their top 3 genres, ensure the case and spacing is correctly formatted
+            for genre in range(3):
+                currentGenre = userPreferences[genre][0]
+
+                if "_" in currentGenre:
+                    if currentGenre == "post_apocalyptic":
+                        currentGenre = "Post-apocalyptic"
+                    elif currentGenre == "city_builder":
+                        currentGenre = "City Builder"
+                    elif currentGenre == "free_to_play":
+                        currentGenre = "Free To Play"
+                    elif currentGenre == "class_based":
+                        currentGenre = "Class-based"
+                    elif currentGenre == "first_person":
+                        currentGenre = "First Person"
+                    elif currentGenre == "open_world":
+                        currentGenre = "Open World"
+                    elif currentGenre == "procedural_generation":
+                        currentGenre = "Procedural Generation"
+                    elif currentGenre == "side_scroller":
+                        currentGenre = "Side Scroller"
+                    elif currentGenre == "third_person":
+                        currentGenre = "Third Person"
+                    elif currentGenre == "tower_defence":
+                        currentGenre = "Tower Defence"
+
+                elif currentGenre == "twod":
+                    currentGenre = "2D"
+                elif currentGenre == "scifi":
+                    currentGenre = "Sci-fi"
+                elif currentGenre == "coop":
+                    currentGenre = "Co-op"
+                elif currentGenre == "fps" or currentGenre == "rts" or currentGenre == "vr" or currentGenre == "rpg" or currentGenre == "moba":
+                    currentGenre = userPreferences[genre][0].upper()
+
+                else:
+                    capitalised = currentGenre[0:].capitalize()
+                    currentGenre = capitalised
+
+                # Add the corrected genre name to the list at the end of each loop
+                listOfValidatedGenres.append(currentGenre)
+
+        print(listOfValidatedGenres[0], listOfValidatedGenres[1], listOfValidatedGenres[2])
+        context['recommended_genres'] = Genre.objects.all().filter(name__in=[listOfValidatedGenres[0], listOfValidatedGenres[1], listOfValidatedGenres[2]])
+        return context
 
 # Displays all information about a single game on a detail page
 class DetailPage(generic.DetailView):
