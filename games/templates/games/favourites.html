@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Search By Genre</title>
+    {% extends 'games/base.html' %}
+</head>
+<body>
+
+{%  block body %}
+<div>
+<h1>Favourite Genres</h1>
+<br>
+{% if genre_list %}
+
+<select id="genres1" required="required" onchange="selectedValueGenre1()">
+    <option selected="selected">Please select a genre</option>
+    {% for genre1 in genre_list %}
+        <option value="{{ genre1 }}">{{ genre1 }}</option>
+    {% endfor %}
+</select>
+
+<br>
+
+<select id="genres2" required="required" onchange="selectedValueGenre2()">
+    <option selected="selected">Please select a second genre</option>
+    {% for genre2 in genre_list %}
+        <option value="{{ genre2 }}">{{ genre2 }}</option>
+    {% endfor %}
+</select>
+
+<br>
+
+<select id="genres3" required="required" onchange="selectedValueGenre3()">
+    <option selected="selected">Please select a third genre</option>
+    {% for genre3 in genre_list %}
+        <option value="{{ genre3 }}">{{ genre3 }}</option>
+    {% endfor %}
+</select>
+
+<p id="selected1" hidden="hidden">A</p>
+<p id="selected2" hidden="hidden">B</p>
+<p id="selected3" hidden="hidden">C</p>
+<p id="hreftag" hidden="hidden">href</p><br><br>
+
+<form action="javascript:document.location.href=setAction({{ user.id }})">
+    <button type="submit" class="btn btn-primary btn-lg">Submit Favourites</button>
+</form>
+
+{% endif %}
+
+</div>
+
+{%  endblock %}
+
+</body>
+</html>

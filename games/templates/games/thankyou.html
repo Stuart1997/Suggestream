@@ -12,8 +12,11 @@
 {%  block body %}
 <div>
 
-<h1>Welcome to Suggestream{% if user.is_authenticated %}, {{ user.first_name }}{% endif %}</h1>
+<h1>Thank you for submitting your favourite genres</h1>
 <br>
+<h4>Your user profile has been updated, this helps understand your preferences for recommendations</h4>
+<br><br>
+
 <form action="{% url 'genre-search' %}">
     <button type="submit" class="btn btn-primary btn-lg btn-block">Search By Genre</button>
 </form><br>

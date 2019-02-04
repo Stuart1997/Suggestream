@@ -4,15 +4,20 @@ body {
   margin-top: 5rem;
 }
 
-div#wholePage h1, h3, img, p {
+div#wholePage h1, h3, img, p, select, a, form {
     text-align: center;
     display: block;
     margin-left: auto;
     margin-right: auto;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1 {
   color: #444444;
+  text-align: center;
+}
+
+select {
+  text-align: center;
 }
 
 .scrollable-menu {
