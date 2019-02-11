@@ -8,12 +8,17 @@
 </head>
 <body>
 
-{%  block body %}
+{% block body %}
+<div class="content-section">
 <div>
 <h1>Favourite Genres</h1>
 <br>
 {% if genre_list %}
 
+<h3>Please select your 3 favourite genres</h3>
+
+<!--3 dropdown boxes are created and filled with all of the game's genres, when a genre is selected
+    the value is stored in p tag below as a variable.-->
 <select id="genres1" required="required" onchange="selectedValueGenre1()">
     <option selected="selected">Please select a genre</option>
     {% for genre1 in genre_list %}
@@ -39,11 +44,15 @@
     {% endfor %}
 </select>
 
+<!--By default these p tags are hidden because they act as variables for the javascript functions,
+    each of the 'selected' p tags will change once a genre is chosen from each dropdown box, if any
+    of them are still A, B or C upon submission, submission will fail.-->
 <p id="selected1" hidden="hidden">A</p>
 <p id="selected2" hidden="hidden">B</p>
-<p id="selected3" hidden="hidden">C</p>
-<p id="hreftag" hidden="hidden">href</p><br><br>
+<p id="selected3" hidden="hidden">C</p><br>
 
+<!--Clicking this button will send a query to update the 3 selected genre values on the user's profile,
+    otherwise the page will refresh as it will not be successful (as they will not have selected all 3.)-->
 <form action="javascript:document.location.href=setAction({{ user.id }})">
     <button type="submit" class="btn btn-primary btn-lg">Submit Favourites</button>
 </form>
@@ -51,7 +60,7 @@
 {% endif %}
 
 </div>
-
+</div>
 {%  endblock %}
 
 </body>

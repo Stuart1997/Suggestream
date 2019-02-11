@@ -9,13 +9,15 @@
 </head>
 <body>
 
-{%  block body %}
-<div>
+{% block body %}
+<div class="content-section">
 
+<div>
 
 <h1>Search By Genre</h1>
 {% if genre_list %}
 
+<!--Create a dropdown box containing each genre in the database to search by-->
 <div class="btn-group">
   <button class="btn btn-secondary btn-lg dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Select Genre</button>
   <div class="dropdown-menu scrollable-menu">
@@ -29,7 +31,8 @@
 
 {% endif %}
 </div>
-{%  endblock %}
+</div>
+{% endblock %}
 
 </body>
 </html>

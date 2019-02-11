@@ -10,42 +10,48 @@
 <body>
 
 {%  block body %}
+<div class="content-section">
 <div>
 
 <h1>Recommended for you</h1>
 
 {% if recommended_genres %}
-    <h2>
-        {% for genre in recommended_genres %}
-            {{ genre }}
-        {% endfor %}
-    </h2>
+    {% if recommended_genres.0.name == "2D" and recommended_genres.1.name == "Action" and recommended_genres.2.name == "Adventure" %}
+    <p>No preferences detected! Please help us identify the games you enjoy by following <a href="{% url 'home:favourites' %}">this link</a></p>
+
+{% else %}
+
+<h5>These recommendations are based off your preference of: {{ recommended_genres.0 }}, {{ recommended_genres.1 }} and {{ recommended_genres.2 }} games</h5>
 
 {% if game_list %}
-<table class="table">
+
+<table class="table table-bordered">
     <!--Sets up headings-->
     <thead class="thead-dark">
     <tr>
-      <th scope="col"></th>
-      <th scope="col">Game</th>
-      <th scope="col">Developer</th>
-      <th scope="col">Metacritic</th>
-      <th scope="col">Because You Like</th>
-      <th scope="col">More Details</th>
+      <th scope="col" class="align-middle" style="width: 33.33%">Image</th>
+      <th scope="col" class="align-middle" style="width: 16.66%">Title</th>
+      <th scope="col" class="align-middle" style="width: 7.5%">Developer</th>
+      <th scope="col" class="align-middle" style="width: 7.5%">Metacritic</th>
+      <th scope="col" class="align-middle" style="width: 17.5%">Because You Like</th>
+      <th scope="col" class="align-middle" style="width: 17.5%">More Details</th>
     </tr>
     </thead>
 
+    <!--Loop through each recommended game-->
     {% for game in game_list %}
     <tbody>
     <tr>
-        <td><img src="{{ game.image }}"></td>
-        <td>{{ game.name }}</td>
-        <td>{{ game.developer }}</td>
+        <!--Add the game's details-->
+        <td class="align-middle"><img src="{{ game.image }}"></td>
+        <td class="align-middle">{{ game.name }}</td>
+        <td class="align-middle">{{ game.developer }}</td>
 
+        <!--As some games don't have a metacritic rating, in the database they are 0, so change 0 to N/A-->
         {% if game.metacritic == 0 %}
-            <td>N/A</td>
+            <td class="align-middle">N/A</td>
         {% else %}
-            <td>{{ game.metacritic }}</td>
+            <td class="align-middle">{{ game.metacritic }}</td>
         {% endif %}
 
 
@@ -53,7 +59,7 @@
             one or more of the user's preferred genres, then put this into the 'because
             you like' column to show which genres it is most applicable towards.-->
         {% if game.genres %}
-            <td>
+            <td class="align-middle">
                 {% for genre in game.genres.all %}
                     {% for likedGenre in recommended_genres %}
                         {% if likedGenre == genre %}
@@ -63,12 +69,12 @@
                 {% endfor %}
             </td>
         {% else %}
-            <td>N/A</td>
+            <td class="align-middle">N/A</td>
         {% endif %}
 
 
         <!--The detail page requires a game ID as part of its URL, this grabs the game that is selected's ID-->
-        <td><a href="{% url 'games:detail' game.id %}">Click for more details</a></td>
+        <td class="align-middle"><a href="{% url 'games:detail' game.id %}">Click for more details</a></td>
         </tr>
     {% endfor %}
     </tbody>
@@ -79,6 +85,8 @@
     <p>No games found!</p>
 {% endif %}
 {% endif %}
+{% endif %}
+</div>
 </div>
 {%  endblock %}
 

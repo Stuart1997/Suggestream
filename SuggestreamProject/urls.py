@@ -19,8 +19,6 @@ urlpatterns = [
     path('login/', auth_views.LoginView.as_view(template_name='games/login.html'), name='login'),
     path('logout/', auth_views.LogoutView.as_view(template_name='games/logout.html'), name='logout'),
     path('profile/', game_views.profile, name='profile'),
-    path('favourites/', game_views.SelectFavouriteGenres.as_view(), name='favourites'),
-    path('favourites/submitted/', game_views.SubmitFavourites.as_view(), name='submitted'),
     path('admin/', admin.site.urls),
 ]
 

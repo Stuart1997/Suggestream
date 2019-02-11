@@ -9,38 +9,41 @@
 </head>
 <body>
 
-{%  block body %}
+{% block body %}
+<div class="content-section">
 <div>
 
 <!--If the list of games exists, create a table and populate each row with a game-->
 {% if game_list %}
-<table class="table">
+    {% if game_list.0.name == "Adventure Capitalist" %} <h1>Games in Alphabetical Order</h1>
+    {% elif game_list.0.metacritic > 95 %} <h1>Games by Metacritic Rating</h1>{% endif %}
+<table class="table table-bordered">
     <!--Sets up headings-->
     <thead class="thead-dark">
     <tr>
-      <th scope="col"></th>
-      <th scope="col">Game</th>
-      <th scope="col">Developer</th>
-      <th scope="col">Metacritic</th>
-      <th scope="col">More Details</th>
+      <th scope="col" class="align-middle" style="width: 40%">Image</th>
+      <th scope="col" class="align-middle" style="width: 20%">Title</th>
+      <th scope="col" class="align-middle" style="width: 10%">Developer</th>
+      <th scope="col" class="align-middle" style="width: 10%">Metacritic</th>
+      <th scope="col" class="align-middle" style="width: 20%">More Details</th>
     </tr>
     </thead>
 
     {% for game in game_list %}
     <tbody>
     <tr>
-        <td><img src="{{ game.image }}"></td>
-        <td>{{ game.name }}</td>
-        <td>{{ game.developer }}</td>
+        <td class="align-middle"><img src="{{ game.image }}"></td>
+        <td class="align-middle">{{ game.name }}</td>
+        <td class="align-middle">{{ game.developer }}</td>
 
         {% if game.metacritic == 0 %}
-            <td>N/A</td>
+            <td class="align-middle">N/A</td>
         {% else %}
-            <td>{{ game.metacritic }}</td>
+            <td class="align-middle">{{ game.metacritic }}</td>
         {% endif %}
 
         <!--The detail page requires a game ID as part of its URL, this grabs the game that is selected's ID-->
-        <td><a href="{% url 'games:detail' game.id %}">Click for more details</a></td>
+        <td class="align-middle"><a href="{% url 'games:detail' game.id %}">Click for more details</a></td>
         </tr>
     {% endfor %}
     </tbody>
@@ -52,7 +55,8 @@
 {% endif %}
 
 </div>
-{%  endblock %}
+</div>
+{% endblock %}
 
 </body>
 </html>

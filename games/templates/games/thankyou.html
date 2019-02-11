@@ -9,14 +9,16 @@
 </head>
 <body>
 
-{%  block body %}
+{% block body %}
+<div class="content-section">
 <div>
 
 <h1>Thank you for submitting your favourite genres</h1>
 <br>
-<h4>Your user profile has been updated, this helps understand your preferences for recommendations</h4>
+<h4>Your user profile has been updated, this helps us better understand your preferences for future recommendations</h4>
 <br><br>
 
+<!--Menu options for the user to browse-->
 <form action="{% url 'genre-search' %}">
     <button type="submit" class="btn btn-primary btn-lg btn-block">Search By Genre</button>
 </form><br>
@@ -31,9 +33,8 @@
 </form>
 
 </div>
+</div>
 {%  endblock %}
-
-
 
 </body>
 </html>

@@ -2,15 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="171c6254-2299-4283-ac36-33462813236d" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SuggestreamProject/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/SuggestreamProject/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/games/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/games/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/games/static/games/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/games/static/games/script.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/games/static/games/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/games/static/games/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/games/templates/games/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/games/templates/games/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/games/templates/games/allgames.html" beforeDir="false" afterPath="$PROJECT_DIR$/games/templates/games/allgames.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/games/templates/games/detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/games/templates/games/detail.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/games/templates/games/favourites.html" beforeDir="false" afterPath="$PROJECT_DIR$/games/templates/games/favourites.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/games/templates/games/genresearch.html" beforeDir="false" afterPath="$PROJECT_DIR$/games/templates/games/genresearch.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/games/templates/games/genresearchresults.html" beforeDir="false" afterPath="$PROJECT_DIR$/games/templates/games/genresearchresults.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/games/templates/games/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/games/templates/games/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/games/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/games/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/games/templates/games/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/games/templates/games/profile.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/games/templates/games/recommended.html" beforeDir="false" afterPath="$PROJECT_DIR$/games/templates/games/recommended.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/games/templates/games/thankyou.html" beforeDir="false" afterPath="$PROJECT_DIR$/games/templates/games/thankyou.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/games/templates/games/titlesearch.html" beforeDir="false" afterPath="$PROJECT_DIR$/games/templates/games/titlesearch.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/games/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/games/urls.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -25,43 +32,43 @@
     <session id="354165736">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="1" />
+          <entry key="project.closed" value="2" />
           <entry key="project.open.time.2" value="1" />
-          <entry key="project.open.time.8" value="1" />
+          <entry key="project.open.time.8" value="2" />
           <entry key="project.open.time.87" value="1" />
-          <entry key="project.opened" value="3" />
+          <entry key="project.opened" value="4" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="css" value="114" />
-          <entry key="html" value="6944" />
-          <entry key="js" value="738" />
-          <entry key="py" value="14643" />
+          <entry key="css" value="451" />
+          <entry key="html" value="9540" />
+          <entry key="js" value="1269" />
+          <entry key="py" value="14651" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="CSS" value="114" />
-          <entry key="HTML" value="6944" />
-          <entry key="JavaScript" value="738" />
-          <entry key="Python" value="14643" />
+          <entry key="CSS" value="451" />
+          <entry key="HTML" value="9540" />
+          <entry key="JavaScript" value="1269" />
+          <entry key="Python" value="14651" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="css" value="7" />
-          <entry key="html" value="66" />
-          <entry key="js" value="2" />
-          <entry key="py" value="124" />
+          <entry key="css" value="10" />
+          <entry key="html" value="96" />
+          <entry key="js" value="3" />
+          <entry key="py" value="131" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="CSS" value="7" />
-          <entry key="HTML" value="66" />
-          <entry key="JavaScript" value="2" />
-          <entry key="Python" value="124" />
+          <entry key="CSS" value="10" />
+          <entry key="HTML" value="96" />
+          <entry key="JavaScript" value="3" />
+          <entry key="Python" value="131" />
         </counts>
       </usages-collector>
     </session>
@@ -70,12 +77,53 @@
     <favorites_list name="SuggestreamProject" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+    <leaf>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/games/templates/games/profile.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="273">
+              <caret line="23" column="47" selection-start-line="23" selection-start-column="47" selection-end-line="23" selection-end-column="47" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/games/static/games/style.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="320">
+              <caret line="20" column="7" selection-start-line="20" selection-start-column="7" selection-end-line="20" selection-end-column="7" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/games/models.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-255">
+              <caret line="8" column="8" selection-start-line="8" selection-start-column="4" selection-end-line="8" selection-end-column="8" />
+              <folding>
+                <element signature="e#0#28#0" expanded="true" />
+                <marker date="1548792853926" expanded="true" signature="161:2788" ph="..." />
+                <marker date="1548792853926" expanded="true" signature="3481:3490" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/games/templates/games/allgames.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="288">
+              <caret line="24" column="72" lean-forward="true" selection-start-line="24" selection-start-column="72" selection-end-line="24" selection-end-column="72" />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/games/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="176">
-              <caret line="194" column="21" selection-start-line="194" selection-start-column="8" selection-end-line="194" selection-end-column="21" />
+            <state relative-caret-position="1490">
+              <caret line="368" column="63" lean-forward="true" selection-start-line="368" selection-start-column="63" selection-end-line="368" selection-end-column="63" />
               <folding>
                 <element signature="e#0#35#0" expanded="true" />
                 <marker date="1549305280665" expanded="true" signature="1638:7228" ph="..." />
@@ -89,28 +137,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/games/static/games/style.css">
+        <entry file="file://$PROJECT_DIR$/games/templates/games/recommended.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="96">
-              <caret line="6" column="45" selection-start-line="6" selection-start-column="45" selection-end-line="6" selection-end-column="45" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/games/templates/games/profile.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="384">
-              <caret line="24" column="69" lean-forward="true" selection-start-line="24" selection-start-column="69" selection-end-line="24" selection-end-column="69" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/games/templates/games/genresearch.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="352">
-              <caret line="22" column="49" lean-forward="true" selection-start-line="22" selection-start-column="49" selection-end-line="22" selection-end-column="49" />
+            <state relative-caret-position="256">
+              <caret line="19" column="121" selection-start-line="19" selection-start-column="121" selection-end-line="19" selection-end-column="121" />
             </state>
           </provider>
         </entry>
@@ -119,34 +149,28 @@
         <entry file="file://$PROJECT_DIR$/games/templates/games/favourites.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="272">
-              <caret line="17" column="47" selection-start-line="17" selection-start-column="47" selection-end-line="17" selection-end-column="47" />
+              <caret line="17" column="3" selection-start-line="17" selection-start-column="3" selection-end-line="17" selection-end-column="3" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/games/static/games/script.js">
+        <entry file="file://$PROJECT_DIR$/SuggestreamProject/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="416">
-              <caret line="26" column="16" selection-start-line="26" selection-start-column="16" selection-end-line="26" selection-end-column="16" />
+            <state relative-caret-position="80">
+              <caret line="5" column="32" lean-forward="true" selection-start-line="5" selection-end-line="6" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/games/templates/games/thankyou.html">
+        <entry file="file://$PROJECT_DIR$/games/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="256">
-              <caret line="16" column="3" selection-start-line="16" selection-start-column="3" selection-end-line="16" selection-end-column="3" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/games/templates/games/index.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="15" column="4" selection-start-line="15" selection-start-column="4" selection-end-line="15" selection-end-column="4" />
+            <state relative-caret-position="64">
+              <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
+              <folding>
+                <element signature="e#0#28#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -154,8 +178,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/games/templates/games/base.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="384">
-              <caret line="28" column="93" selection-start-line="28" selection-start-column="72" selection-end-line="28" selection-end-column="93" />
+            <state relative-caret-position="374">
+              <caret line="51" selection-start-line="51" selection-end-line="51" />
             </state>
           </provider>
         </entry>
@@ -171,19 +195,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>games</find>
-      <find>&lt;button</find>
-      <find>form action</find>
-      <find>admin/</find>
-      <find>django.middleware.csrf.CsrfViewMiddleware</find>
-      <find>CSRF_COOKIE_SECUR</find>
-      <find>/profile</find>
-      <find>Test Lo</find>
-      <find>th</find>
-      <find>auth_</find>
-      <find>date_of_birth</find>
-      <find>twod</find>
-      <find>action=</find>
       <find>csrf</find>
       <find>url</find>
       <find>accounts/l</find>
@@ -201,7 +212,24 @@
       <find>== None</find>
       <find>'recomm</find>
       <find>if user_id !=</find>
+      <find>hreftag</find>
+      <find>block</find>
+      <find>{% `</find>
+      <find>{%</find>
+      <find>\{\%</find>
+      <find>allgames</find>
+      <find>tbody</find>
+      <find>detail</find>
+      <find>return</find>
+      <find>&lt;td&gt;</find>
+      <find>&lt;th&gt;</find>
+      <find>{% if</find>
+      <find>if</find>
     </findStrings>
+    <replaceStrings>
+      <replace>&lt;td class=&quot;align-middle&quot;&gt;</replace>
+      <replace>&lt;th class=&quot;align-middle&quot;&gt;</replace>
+    </replaceStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -210,33 +238,33 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/games/templates/games/logout.html" />
-        <option value="$PROJECT_DIR$/games/templates/games/detail.html" />
-        <option value="$PROJECT_DIR$/games/templates/games/titlesearch.html" />
         <option value="$PROJECT_DIR$/SuggestreamProject/settings.py" />
-        <option value="$PROJECT_DIR$/games/urls.py" />
         <option value="$PROJECT_DIR$/games/templates/games/increase.html" />
         <option value="$PROJECT_DIR$/games/templates/games/login.html" />
         <option value="$PROJECT_DIR$/games/templates/games/register.html" />
         <option value="$PROJECT_DIR$/games/admin.py" />
         <option value="$PROJECT_DIR$/games/signals.py" />
         <option value="$PROJECT_DIR$/games/apps.py" />
-        <option value="$PROJECT_DIR$/games/templates/games/allgames.html" />
         <option value="$PROJECT_DIR$/games/templates/games/searchresults.html" />
-        <option value="$PROJECT_DIR$/games/templates/games/genresearchresults.html" />
-        <option value="$PROJECT_DIR$/games/models.py" />
-        <option value="$PROJECT_DIR$/games/templates/games/recommended.html" />
-        <option value="$PROJECT_DIR$/games/templates/games/profile.html" />
         <option value="$PROJECT_DIR$/games/forms.py" />
         <option value="$PROJECT_DIR$/games/templates/games/script.js" />
-        <option value="$PROJECT_DIR$/games/templates/games/genresearch.html" />
-        <option value="$PROJECT_DIR$/SuggestreamProject/urls.py" />
-        <option value="$PROJECT_DIR$/games/templates/games/base.html" />
-        <option value="$PROJECT_DIR$/games/views.py" />
-        <option value="$PROJECT_DIR$/games/static/games/style.css" />
-        <option value="$PROJECT_DIR$/games/templates/games/favourites.html" />
-        <option value="$PROJECT_DIR$/games/static/games/script.js" />
         <option value="$PROJECT_DIR$/games/templates/games/thankyou.html" />
+        <option value="$PROJECT_DIR$/games/templates/games/profile.html" />
+        <option value="$PROJECT_DIR$/games/templates/games/base.html" />
+        <option value="$PROJECT_DIR$/games/templates/games/genresearchresults.html" />
         <option value="$PROJECT_DIR$/games/templates/games/index.html" />
+        <option value="$PROJECT_DIR$/games/templates/games/titlesearch.html" />
+        <option value="$PROJECT_DIR$/games/templates/games/genresearch.html" />
+        <option value="$PROJECT_DIR$/games/static/games/script.js" />
+        <option value="$PROJECT_DIR$/games/views.py" />
+        <option value="$PROJECT_DIR$/games/templates/games/allgames.html" />
+        <option value="$PROJECT_DIR$/games/templates/games/detail.html" />
+        <option value="$PROJECT_DIR$/games/models.py" />
+        <option value="$PROJECT_DIR$/SuggestreamProject/urls.py" />
+        <option value="$PROJECT_DIR$/games/urls.py" />
+        <option value="$PROJECT_DIR$/games/templates/games/recommended.html" />
+        <option value="$PROJECT_DIR$/games/templates/games/favourites.html" />
+        <option value="$PROJECT_DIR$/games/static/games/style.css" />
       </list>
     </option>
   </component>
@@ -247,7 +275,7 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-7" />
+    <option name="x" value="953" />
     <option name="width" value="974" />
     <option name="height" value="1047" />
   </component>
@@ -279,7 +307,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -327,6 +354,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -404,12 +432,12 @@
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4964539" visible="true" weight="0.11513859" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4964539" visible="true" weight="0.23880596" />
       <window_info id="Structure" order="1" sideWeight="0.5035461" side_tool="true" weight="0.31717598" />
       <window_info id="Favorites" order="2" sideWeight="0.50142044" side_tool="true" weight="0.2177243" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32921347" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.32035595" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.25139043" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39599556" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -464,13 +492,6 @@
     <entry file="file://$PROJECT_DIR$/games/migrations/0004_profile.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/games/templates/games/detail.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="37">
-          <caret line="24" column="12" selection-start-line="24" selection-start-column="7" selection-end-line="24" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/django/contrib/auth/views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-208">
@@ -482,13 +503,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="176">
           <caret line="64" column="6" selection-start-line="64" selection-start-column="6" selection-end-line="64" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/games/templates/games/titlesearch.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="224">
-          <caret line="14" column="19" selection-start-line="14" selection-start-column="19" selection-end-line="14" selection-end-column="19" />
         </state>
       </provider>
     </entry>
@@ -583,13 +597,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/games/templates/games/increase.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="64">
-          <caret line="4" selection-start-line="4" selection-end-line="4" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/games/templates/games/increase.html" />
     <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/django/db/backends/sqlite3/base.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="168">
@@ -615,9 +623,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="64">
           <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
-          <folding>
-            <element signature="e#0#46#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -638,13 +643,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/games/templates/games/searchresults.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="11" column="17" lean-forward="true" selection-start-line="11" selection-start-column="17" selection-end-line="11" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/games/templates/games/searchresults.html" />
     <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/django/contrib/auth/urls.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="128">
@@ -659,13 +658,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/games/templates/games/allgames.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="384">
-          <caret line="51" column="11" selection-start-line="15" selection-end-line="51" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/django/core/handlers/base.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="193">
@@ -673,38 +665,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/games/templates/games/genresearchresults.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-258">
-          <caret line="14" column="24" selection-start-line="14" selection-start-column="24" selection-end-line="14" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/django/forms/models.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="191">
           <caret line="265" selection-start-line="265" selection-end-line="265" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/games/templates/games/login.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="400">
-          <caret line="25" selection-end-line="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/games/templates/games/register.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="9" column="20" selection-start-line="9" selection-start-column="20" selection-end-line="9" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/games/templates/games/recommended.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="256">
-          <caret line="49" lean-forward="true" selection-start-line="49" selection-end-line="49" />
         </state>
       </provider>
     </entry>
@@ -718,20 +682,97 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/games/urls.py">
+    <entry file="file://$APPLICATION_HOME_DIR$/helpers/python-skeletons/django/views/generic/base.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="128">
-          <caret line="8" column="22" selection-start-line="8" selection-start-column="22" selection-end-line="8" selection-end-column="22" />
+        <state relative-caret-position="96">
+          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/games/templates/games/thankyou.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="560">
+          <caret line="35" column="6" selection-start-line="35" selection-start-column="6" selection-end-line="35" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/games/templates/games/genresearchresults.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="122">
+          <caret line="12" column="14" selection-start-line="12" selection-end-line="13" />
           <folding>
-            <element signature="e#0#28#0" expanded="true" />
+            <element signature="n#style#0;n#th#0;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#th#1;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#th#2;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#th#3;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#th#4;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/games/templates/games/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="11" column="2" lean-forward="true" selection-start-line="11" selection-start-column="2" selection-end-line="11" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/games/templates/games/login.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="400">
+          <caret line="25" selection-end-line="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/games/templates/games/register.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="96">
+          <caret line="6" selection-start-line="6" selection-end-line="6" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/games/templates/games/titlesearch.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="11" column="6" lean-forward="true" selection-start-line="11" selection-end-line="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/games/static/games/script.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="512">
+          <caret line="40" column="4" selection-start-line="40" selection-start-column="4" selection-end-line="40" selection-end-column="4" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/games/templates/games/genresearch.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="416">
+          <caret line="26" column="79" selection-start-line="26" selection-start-column="74" selection-end-line="26" selection-end-column="79" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/games/templates/games/detail.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="208">
+          <caret line="13" lean-forward="true" selection-start-line="13" selection-end-line="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/games/templates/games/profile.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="273">
+          <caret line="23" column="47" selection-start-line="23" selection-start-column="47" selection-end-line="23" selection-end-column="47" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/games/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="64">
-          <caret line="4" selection-start-line="4" selection-end-line="4" />
+        <state relative-caret-position="-255">
+          <caret line="8" column="8" selection-start-line="8" selection-start-column="4" selection-end-line="8" selection-end-column="8" />
           <folding>
             <element signature="e#0#28#0" expanded="true" />
             <marker date="1548792853926" expanded="true" signature="161:2788" ph="..." />
@@ -740,41 +781,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$APPLICATION_HOME_DIR$/helpers/python-skeletons/django/views/generic/base.py">
+    <entry file="file://$PROJECT_DIR$/games/templates/games/allgames.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="96">
-          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SuggestreamProject/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="80">
-          <caret line="5" column="37" lean-forward="true" selection-start-line="5" selection-start-column="37" selection-end-line="5" selection-end-column="37" />
-          <folding>
-            <element signature="e#0#37#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/games/templates/games/genresearch.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="352">
-          <caret line="22" column="49" lean-forward="true" selection-start-line="22" selection-start-column="49" selection-end-line="22" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/games/static/games/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="96">
-          <caret line="6" column="45" selection-start-line="6" selection-start-column="45" selection-end-line="6" selection-end-column="45" />
+        <state relative-caret-position="288">
+          <caret line="24" column="72" lean-forward="true" selection-start-line="24" selection-start-column="72" selection-end-line="24" selection-end-column="72" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/games/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="194" column="21" selection-start-line="194" selection-start-column="8" selection-end-line="194" selection-end-column="21" />
+        <state relative-caret-position="1490">
+          <caret line="368" column="63" lean-forward="true" selection-start-line="368" selection-start-column="63" selection-end-line="368" selection-end-column="63" />
           <folding>
             <element signature="e#0#35#0" expanded="true" />
             <marker date="1549305280665" expanded="true" signature="1638:7228" ph="..." />
@@ -786,45 +803,48 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/games/templates/games/favourites.html">
+    <entry file="file://$PROJECT_DIR$/SuggestreamProject/urls.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="17" column="47" selection-start-line="17" selection-start-column="47" selection-end-line="17" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/games/static/games/script.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="416">
-          <caret line="26" column="16" selection-start-line="26" selection-start-column="16" selection-end-line="26" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/games/templates/games/thankyou.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="256">
-          <caret line="16" column="3" selection-start-line="16" selection-start-column="3" selection-end-line="16" selection-end-column="3" />
+        <state relative-caret-position="80">
+          <caret line="5" column="32" lean-forward="true" selection-start-line="5" selection-end-line="6" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/games/templates/games/base.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="384">
-          <caret line="28" column="93" selection-start-line="28" selection-start-column="72" selection-end-line="28" selection-end-column="93" />
+        <state relative-caret-position="374">
+          <caret line="51" selection-start-line="51" selection-end-line="51" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/games/templates/games/profile.html">
+    <entry file="file://$PROJECT_DIR$/games/urls.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="384">
-          <caret line="24" column="69" lean-forward="true" selection-start-line="24" selection-start-column="69" selection-end-line="24" selection-end-column="69" />
+        <state relative-caret-position="64">
+          <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/games/templates/games/index.html">
+    <entry file="file://$PROJECT_DIR$/games/templates/games/recommended.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="15" column="4" selection-start-line="15" selection-start-column="4" selection-end-line="15" selection-end-column="4" />
+        <state relative-caret-position="256">
+          <caret line="19" column="121" selection-start-line="19" selection-start-column="121" selection-end-line="19" selection-end-column="121" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/games/templates/games/favourites.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="17" column="3" selection-start-line="17" selection-start-column="3" selection-end-line="17" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/games/static/games/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="320">
+          <caret line="20" column="7" selection-start-line="20" selection-start-column="7" selection-end-line="20" selection-end-column="7" />
         </state>
       </provider>
     </entry>

@@ -8,38 +8,76 @@
 </head>
 <body>
 {% block body %}
+<div class="content-section">
+
 <div id="wholePage">
 
     <h1>{{ game.name }}</h1>
-    <h3>{{ game.developer }}</h3><br>
-    <img src="{{ game.image }}"><br><br>
-    <p>{{ game.description }}</p>
-    <p>Release Date: {{ game.release_date }}</p>
-    <p>Metacritic:
-    {% if game.metacritic == 0 %}
-            N/A
-    {% else %}
-        {{ game.metacritic }}
-    {% endif %}
-    </p>
-    <p>Genres:
-    {% for genre in game.genres.all %}
-        {{ genre }},
-    {% endfor %}
-    </p>
-    <p><a href="{{ game.steam }}">Steam Page</a></p><br><br>
+    <img src="{{ game.image }}"><br>
 
-    {% comment %}<iframe
-    src="https://clips.twitch.tv/embed?clip={{  }}" <!--Clip url, e.g. EmpathicAwkwardPorcupineGingerPower-->
-    height="720" width="1280"
-    frameborder="0" scrolling="no" allowfullscreen="true">
-    </iframe>{% endcomment %}
+<table class="table table-bordered">
+    <tbody>
+    <thead class="thead-dark">
+        <tr>
+          <th class="align-middle">Description</th>
+            <td class="align-middle">{{ game.description }}</td>
+        </tr>
+        <tr>
+          <th class="align-middle">Developer</th>
+            <td class="align-middle">{{ game.developer }}</td>
+        </tr>
+        <tr>
+          <th class="align-middle">Release Date</th>
+            <td class="align-middle">{{ game.release_date }}</td>
+        </tr>
+        <tr>
+          <th class="align-middle">Metacritic</th>
+            <td class="align-middle">{% if game.metacritic == 0 %}
+                    N/A
+                {% else %}
+                    {{ game.metacritic }}
+                {% endif %}
+            </td>
+        </tr>
+        <tr>
+          <th class="align-middle">Genres</th>
+            <td class="align-middle">
+                {% for genre in game.genres.all %}
+                    {{ genre }},
+                {% endfor %}
+            </td>
+        </tr>
+        <tr>
+            <th class="align-middle">Steam</th>
+                <td class="align-middle">
+                    <a href="{{ game.steam }}">Steam Page</a><br>
+                </td>
+        </tr>
+        <tr>
+            <th class="align-middle">Clips</th>
+                <td class="align-middle">
+                    <button class="btn btn-primary btn-lg" onclick="revealClip('https://clips.twitch.tv/embed?clip=EmpathicAwkwardPorcupineGingerPower')">View Clip 1</button>
+                    <button class="btn btn-primary btn-lg" onclick="revealClip('https://clips.twitch.tv/embed?clip=TriangularLaconicLemurOSfrog')">View Clip 2</button>
+                </td>
+        </tr>
+    </tbody>
+</table>
+
+
+    <div class="embed-responsive embed-responsive-16by9">
+        <iframe id="stream" class="embed-responsive-item" src="" frameborder="0" scrolling="no" allowfullscreen="true"></iframe>
+    </div>
+
+{#    <iframe src="https://clips.twitch.tv/embed?clip=EmpathicAwkwardPorcupineGingerPower"#}
+{#    height="720" width="1280" frameborder="0" scrolling="no" allowfullscreen="true"></iframe>#}
+
+    {#clip={{  }}  Clip url, e.g. EmpathicAwkwardPorcupineGingerPower#}
 
 
     {% if errorMessage %}
         <p>{{ errorMessage }}</p>
     {% endif %}
-
+</div>
 </div>
 {% endblock %}
 </body>

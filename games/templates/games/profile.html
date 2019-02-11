@@ -2,6 +2,7 @@
 {% extends 'games/base.html' %}
 
 {% block body %}
+<div class="content-section">
     <!--User doesn't need to be passed in as it will automatically use django's user variable-->
     <h1>Hello, {{ user.username }}</h1>
     <p>
@@ -27,18 +28,12 @@
         {% if value > 0 and field != 'id' and field != 'user' %}
             <tbody>
             <tr>
-                <td>{{ field|capfirst }}</td>
-                <td>{{ value }}</td>
+                <td class="align-middle">{{ field|capfirst }}</td>
+                <td class="align-middle">{{ value }}</td>
             </tr>
         {% endif %}
     {% endfor %}
     </tbody>
 </table>
-
-
-{#    <p>Your action rating is: {{ user.profile.action }}</p>#}
-{#    <p>Your twod rating is: {{ user.profile.twod }}</p>#}
-{#    <p>Your building rating is: {{ user.profile.building }}</p>#}
-{#    <p>Your cartoon rating is: {{ user.profile.cartoon }}</p>#}
-
+</div>
 {%  endblock %}

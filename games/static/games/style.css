@@ -9,9 +9,16 @@ div#wholePage h1, h3, img, p, select, a, form {
     display: block;
     margin-left: auto;
     margin-right: auto;
+    vertical-align: middle;
 }
 
-h1 {
+th, td {
+    text-align: center;
+    font-weight: bold;
+}
+
+
+h1, h3, h5 {
   color: #444444;
   text-align: center;
 }

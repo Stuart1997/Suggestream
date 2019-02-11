@@ -9,7 +9,8 @@
 </head>
 <body>
 
-{%  block body %}
+{% block body %}
+<div class="content-section">
 <div>
 
 <h1>Welcome to Suggestream{% if user.is_authenticated %}, {{ user.first_name }}{% endif %}</h1>
@@ -28,9 +29,8 @@
 </form>
 
 </div>
-{%  endblock %}
-
-
+</div>
+{% endblock %}
 
 </body>
 </html>
