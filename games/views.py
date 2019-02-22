@@ -191,7 +191,7 @@ class GamesPageByGenre(generic.ListView):
         genre_name = self.request.GET.get("genre")
         user_id = self.request.GET.get("userid")
 
-        #If the user isn't logged in then their preferences can't be updated
+        #If the user is logged in then their preferences can be updated
         if user_id != "None":
             user = Profile.objects.get(user_id=user_id)
             print("-----------------------------------")
@@ -261,16 +261,20 @@ class Recommended(generic.ListView):
                             'sandbox', 'scifi', 'shooter', 'side_scroller', 'singleplayer', 'soccer', 'space', 'sports', 'stealth', 'strategy',
                             'survival', 'third_person', 'tower_defence', 'vr', 'war', 'zombie']
 
+            #Create a list of preference values
             listOfPreferences = []
-            for genre in listOfGenres: listOfPreferences.append(getattr(user, genre))
+            for genre in listOfGenres:
+                listOfPreferences.append(getattr(user, genre))
 
+            #Create a list of corresponding genres and preference values joined together as a tuple
             userPreferences = list(zip(listOfGenres, listOfPreferences))
+
+            #Sort the list of tuples by the preference value in descending order
             userPreferences.sort(key=itemgetter(1), reverse=True)
-            print("Top 3 genres:", userPreferences[0], userPreferences[1], userPreferences[2])
 
             listOfValidatedGenres = []
 
-            #For their top 3 genres, ensure the case and spacing is correctly formatted
+            #For the user's top 3 genres, ensure the case and spacing is correctly formatted
             for genre in range(3):
                 currentGenre = userPreferences[genre][0]
 
@@ -299,10 +303,8 @@ class Recommended(generic.ListView):
                 #Add the corrected genre name to the list at the end of each loop
                 listOfValidatedGenres.append(currentGenre)
 
-            print("TOP 3: ", listOfValidatedGenres)
-
             #Return all games that match the top 3 genres, with no duplicates
-            return Game.objects.filter(genres__name__in=[listOfValidatedGenres[0], listOfValidatedGenres[1], listOfValidatedGenres[2]]).distinct()
+            return Game.objects.filter(genres__name__in=[listOfValidatedGenres[0], listOfValidatedGenres[1], listOfValidatedGenres[2]]).distinct().order_by('?')
 
             #TODO Order by ? is bad practice apparently, use this https://stackoverflow.com/questions/1731346/how-to-get-two-random-records-with-django#6405601
             #https://stackoverflow.com/a/12073921/6079009
@@ -376,6 +378,7 @@ class Recommended(generic.ListView):
         context['recommended_genres'] = Genre.objects.all().filter(name__in=[listOfValidatedGenres[0], listOfValidatedGenres[1], listOfValidatedGenres[2]])
         return context
 
+
 # Displays all information about a single game on a detail page
 class DetailPage(generic.DetailView):
     model = Game
@@ -385,7 +388,7 @@ class DetailPage(generic.DetailView):
 def register(request):
     if request.method == 'POST':
         form = UserRegisterForm(request.POST)
-        profileform = ProfileForm(request.POST)
+        ProfileForm(request.POST)
 
         if form.is_valid():
             user = form.save()
@@ -404,6 +407,7 @@ def register(request):
 def profile(request):
     preferences = model_to_dict(request.user.profile)
     return render(request, 'games/profile.html', {'preferences': preferences})
+
 
 #If the url doesn't have anything after the slash, redirect them to the login page
 def login_redirect(request):

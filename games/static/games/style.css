@@ -12,6 +12,17 @@ div#wholePage h1, h3, img, p, select, a, form {
     vertical-align: middle;
 }
 
+.btn-group-wrap {
+    text-align: center;
+}
+
+div.btn-group {
+    margin: 0 auto;
+    text-align: center;
+    width: inherit;
+    display: inline-block;
+}
+
 th, td {
     text-align: center;
     font-weight: bold;

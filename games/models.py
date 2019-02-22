@@ -79,9 +79,9 @@ class Game(models.Model):
     metacritic = models.IntegerField()
     image = models.CharField(max_length=1000, default="https://steamstore-a.akamaihd.net/public/shared/images/responsive/share_steam_logo.png")
     steam = models.CharField(max_length=1000, default="https://store.steampowered.com/")
+    clip = models.CharField(max_length=300, default="https://clips.twitch.tv/embed?clip=")
+    streams = models.CharField(max_length=300, null=True)
     genres = models.ManyToManyField(Genre)
 
     def __str__(self):
-        # Game.objects.all().prefetch_related('genres')
-        #return "%s (%s)" % (self.name, ", ".join(genre.name for genre in self.genres.all()),)
         return self.name

@@ -16,17 +16,19 @@
 
 <h1>Search By Genre</h1>
 {% if genre_list %}
-
+<br>
 <!--Create a dropdown box containing each genre in the database to search by-->
-<div class="btn-group">
-  <button class="btn btn-secondary btn-lg dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Select Genre</button>
-  <div class="dropdown-menu scrollable-menu">
-      {% for genre in genre_list %}
-        <!--For each item in the list of genres, populate the dropdown box with them.
-            The ? in the href indicates a query, genre is the name of variable, genre.id is the variable value-->
-        <a class="dropdown-item" href="{% url 'genre-results' %}?genre={{ genre.name }}&userid={{ user.id }}">{{ genre.name }}</a>
-      {% endfor %}
-  </div>
+<div class="col-md-12 school-options-dropdown text-center">
+    <div class="dropdown btn-group">
+      <button class="btn btn-secondary btn-lg dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Select Genre</button>
+      <div class="dropdown-menu scrollable-menu">
+          {% for genre in genre_list %}
+            <!--For each item in the list of genres, populate the dropdown box with them.
+                The ? in the href indicates a query, genre is the name of variable, genre.id is the variable value-->
+            <a class="dropdown-item" href="{% url 'genre-results' %}?genre={{ genre.name }}&userid={{ user.id }}">{{ genre.name }}</a>
+          {% endfor %}
+      </div>
+    </div>
 </div>
 
 {% endif %}

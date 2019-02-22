@@ -34,9 +34,6 @@ function setAction(userID) {
 
 
 function revealClip(source) {
+    console.log("Source = " + source);
     document.getElementById('stream').src = source;
-}
-
-function revealClip2(source) {
-    document.getElementById('stream2').src = source;
 }

@@ -13,7 +13,7 @@
 <div id="wholePage">
 
     <h1>{{ game.name }}</h1>
-    <img src="{{ game.image }}"><br>
+    <img class="img-fluid" src="{{ game.image }}"><br>
 
 <table class="table table-bordered">
     <tbody>
@@ -43,40 +43,37 @@
           <th class="align-middle">Genres</th>
             <td class="align-middle">
                 {% for genre in game.genres.all %}
-                    {{ genre }},
+                    {{ genre }} &nbsp;
                 {% endfor %}
             </td>
         </tr>
         <tr>
-            <th class="align-middle">Steam</th>
+            <th class="align-middle">Steam Store Link</th>
                 <td class="align-middle">
-                    <a href="{{ game.steam }}">Steam Page</a><br>
+                    {% load static %}
+                    <a href="{{ game.steam }}">
+                        <img src="{% static 'games/images/steam.png' %}"/>
+                    </a>
                 </td>
         </tr>
         <tr>
-            <th class="align-middle">Clips</th>
+            <th class="align-middle">Twitch Clip</th>
                 <td class="align-middle">
-                    <button class="btn btn-primary btn-lg" onclick="revealClip('https://clips.twitch.tv/embed?clip=EmpathicAwkwardPorcupineGingerPower')">View Clip 1</button>
-                    <button class="btn btn-primary btn-lg" onclick="revealClip('https://clips.twitch.tv/embed?clip=TriangularLaconicLemurOSfrog')">View Clip 2</button>
+                    <p>Viewing a clip will display a clip from Twitch live stream below. Warning: Some clips may contain swearing.</p>
+                    <button class="btn btn-primary btn-lg" onclick="revealClip('{{ game.clip }}')">View Clip</button><br><br>
+                    <a href="{{ game.streams }}">Click here to view more Twitch clips</a>
                 </td>
         </tr>
-    </tbody>
 </table>
 
 
-    <div class="embed-responsive embed-responsive-16by9">
-        <iframe id="stream" class="embed-responsive-item" src="" frameborder="0" scrolling="no" allowfullscreen="true"></iframe>
-    </div>
+<div class="embed-responsive embed-responsive-16by9">
+    <iframe id="stream" class="embed-responsive-item" src="" frameborder="0" scrolling="no" allowfullscreen="true"></iframe>
+</div>
 
-{#    <iframe src="https://clips.twitch.tv/embed?clip=EmpathicAwkwardPorcupineGingerPower"#}
-{#    height="720" width="1280" frameborder="0" scrolling="no" allowfullscreen="true"></iframe>#}
-
-    {#clip={{  }}  Clip url, e.g. EmpathicAwkwardPorcupineGingerPower#}
-
-
-    {% if errorMessage %}
-        <p>{{ errorMessage }}</p>
-    {% endif %}
+{% if errorMessage %}
+    <p>{{ errorMessage }}</p>
+{% endif %}
 </div>
 </div>
 {% endblock %}

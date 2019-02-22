@@ -25,61 +25,64 @@
 
 {% if game_list %}
 
-<table class="table table-bordered">
-    <!--Sets up headings-->
-    <thead class="thead-dark">
-    <tr>
-      <th scope="col" class="align-middle" style="width: 33.33%">Image</th>
-      <th scope="col" class="align-middle" style="width: 16.66%">Title</th>
-      <th scope="col" class="align-middle" style="width: 7.5%">Developer</th>
-      <th scope="col" class="align-middle" style="width: 7.5%">Metacritic</th>
-      <th scope="col" class="align-middle" style="width: 17.5%">Because You Like</th>
-      <th scope="col" class="align-middle" style="width: 17.5%">More Details</th>
-    </tr>
-    </thead>
-
-    <!--Loop through each recommended game-->
-    {% for game in game_list %}
-    <tbody>
-    <tr>
-        <!--Add the game's details-->
-        <td class="align-middle"><img src="{{ game.image }}"></td>
-        <td class="align-middle">{{ game.name }}</td>
-        <td class="align-middle">{{ game.developer }}</td>
-
-        <!--As some games don't have a metacritic rating, in the database they are 0, so change 0 to N/A-->
-        {% if game.metacritic == 0 %}
-            <td class="align-middle">N/A</td>
-        {% else %}
-            <td class="align-middle">{{ game.metacritic }}</td>
-        {% endif %}
-
-
-        <!--Goes through each game's genres, when the current game has a genre which matches
-            one or more of the user's preferred genres, then put this into the 'because
-            you like' column to show which genres it is most applicable towards.-->
-        {% if game.genres %}
-            <td class="align-middle">
-                {% for genre in game.genres.all %}
-                    {% for likedGenre in recommended_genres %}
-                        {% if likedGenre == genre %}
-                            {{ likedGenre }} <br><br>
-                        {% endif %}
-                    {% endfor %}
-                {% endfor %}
-            </td>
-        {% else %}
-            <td class="align-middle">N/A</td>
-        {% endif %}
-
-
-        <!--The detail page requires a game ID as part of its URL, this grabs the game that is selected's ID-->
-        <td class="align-middle"><a href="{% url 'games:detail' game.id %}">Click for more details</a></td>
+<div class="table-responsive">
+    <table class="table table-bordered">
+        <!--Sets up headings-->
+        <thead class="thead-dark">
+        <tr>
+          <!--d-none means don't show at all, d-#-table-cell overrides this
+              and means show this column on screen sizes of # and larger-->
+          <th scope="col" class="align-middle d-none d-xl-table-cell" style="width: 33.33%">Image</th>
+          <th scope="col" class="align-middle" style="width: 16.66%">Title</th>
+          <th scope="col" class="align-middle d-none d-md-table-cell" style="width: 7.5%">Developer</th>
+          <th scope="col" class="align-middle d-none d-sm-table-cell" style="width: 7.5%">Metacritic</th>
+          <th scope="col" class="align-middle" style="width: 17.5%">Because You Like</th>
+          <th scope="col" class="align-middle" style="width: 17.5%">More Details</th>
         </tr>
-    {% endfor %}
-    </tbody>
-</table>
+        </thead>
 
+        <!--Loop through each recommended game-->
+        {% for game in game_list %}
+        <tbody>
+        <tr>
+            <!--Add the game's details-->
+            <td class="align-middle d-none d-xl-table-cell"><img src="{{ game.image }}"></td>
+            <td class="align-middle">{{ game.name }}</td>
+            <td class="align-middle d-none d-md-table-cell">{{ game.developer }}</td>
+
+            <!--As some games don't have a metacritic rating, in the database they are 0, so change 0 to N/A-->
+            {% if game.metacritic == 0 %}
+                <td class="align-middle">N/A</td>
+            {% else %}
+                <td class="align-middle d-none d-sm-table-cell">{{ game.metacritic }}</td>
+            {% endif %}
+
+
+            <!--Goes through each game's genres, when the current game has a genre which matches
+                one or more of the user's preferred genres, then put this into the 'because
+                you like' column to show which genres it is most applicable towards.-->
+            {% if game.genres %}
+                <td class="align-middle">
+                    {% for genre in game.genres.all %}
+                        {% for likedGenre in recommended_genres %}
+                            {% if likedGenre == genre %}
+                                {{ likedGenre }} <br><br>
+                            {% endif %}
+                        {% endfor %}
+                    {% endfor %}
+                </td>
+            {% else %}
+                <td class="align-middle">N/A</td>
+            {% endif %}
+
+
+            <!--The detail page requires a game ID as part of its URL, this grabs the game that is selected's ID-->
+            <td class="align-middle"><a href="{% url 'games:detail' game.id %}">Click for more details</a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
 
 {% else %}
     <p>No games found!</p>
