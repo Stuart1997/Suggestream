@@ -95,16 +95,11 @@ class SubmitFavourites(generic.ListView):
 
             #Discrepencies to the correction above are all handled here to ensure the game genre and
             #user profile genre preferences match
-            if genre1ToUpdate == "2d":
-                genre1ToUpdate = "twod"
-            elif genre1ToUpdate == "class-based":
-                genre1ToUpdate = "class_based"
-            elif genre1ToUpdate == "co-op":
-                genre1ToUpdate = "coop"
-            elif genre1ToUpdate == "post-apocalyptic":
-                genre1ToUpdate = "post_apocalyptic"
-            elif genre1ToUpdate == "sci-fi":
-                genre1ToUpdate = "scifi"
+            if genre1ToUpdate == "2d":                  genre1ToUpdate = "twod"
+            elif genre1ToUpdate == "class-based":       genre1ToUpdate = "class_based"
+            elif genre1ToUpdate == "co-op":             genre1ToUpdate = "coop"
+            elif genre1ToUpdate == "post-apocalyptic":  genre1ToUpdate = "post_apocalyptic"
+            elif genre1ToUpdate == "sci-fi":            genre1ToUpdate = "scifi"
 
 
             #Second genre
@@ -119,16 +114,11 @@ class SubmitFavourites(generic.ListView):
 
             # Discrepencies to the correction above are all handled here to ensure the game genre and
             # user profile genre preferences match
-            if genre2ToUpdate == "2d":
-                genre2ToUpdate = "twod"
-            elif genre2ToUpdate == "class-based":
-                genre2ToUpdate = "class_based"
-            elif genre2ToUpdate == "co-op":
-                genre2ToUpdate = "coop"
-            elif genre2ToUpdate == "post-apocalyptic":
-                genre2ToUpdate = "post_apocalyptic"
-            elif genre2ToUpdate == "sci-fi":
-                genre2ToUpdate = "scifi"
+            if genre2ToUpdate == "2d":                  genre2ToUpdate = "twod"
+            elif genre2ToUpdate == "class-based":       genre2ToUpdate = "class_based"
+            elif genre2ToUpdate == "co-op":             genre2ToUpdate = "coop"
+            elif genre2ToUpdate == "post-apocalyptic":  genre2ToUpdate = "post_apocalyptic"
+            elif genre2ToUpdate == "sci-fi":            genre2ToUpdate = "scifi"
 
             # Third genre
             if " " in genre3_name:
@@ -142,16 +132,11 @@ class SubmitFavourites(generic.ListView):
 
             # Discrepencies to the correction above are all handled here to ensure the game genre and
             # user profile genre preferences match
-            if genre3ToUpdate == "2d":
-                genre3ToUpdate = "twod"
-            elif genre3ToUpdate == "class-based":
-                genre3ToUpdate = "class_based"
-            elif genre3ToUpdate == "co-op":
-                genre3ToUpdate = "coop"
-            elif genre3ToUpdate == "post-apocalyptic":
-                genre3ToUpdate = "post_apocalyptic"
-            elif genre3ToUpdate == "sci-fi":
-                genre3ToUpdate = "scifi"
+            if genre3ToUpdate == "2d":                  genre3ToUpdate = "twod"
+            elif genre3ToUpdate == "class-based":       genre3ToUpdate = "class_based"
+            elif genre3ToUpdate == "co-op":             genre3ToUpdate = "coop"
+            elif genre3ToUpdate == "post-apocalyptic":  genre3ToUpdate = "post_apocalyptic"
+            elif genre3ToUpdate == "sci-fi":            genre3ToUpdate = "scifi"
 
             print("Genre1 to update after validation: ", genre1ToUpdate)
             print("Genre2 to update after validation: ", genre2ToUpdate)
@@ -212,16 +197,11 @@ class GamesPageByGenre(generic.ListView):
 
             #Discrepencies to the correction above are all handled here to ensure the game genre and
             #user profile genre preferences match
-            if genreToUpdate == "2d":
-                genreToUpdate = "twod"
-            elif genreToUpdate == "class-based":
-                genreToUpdate = "class_based"
-            elif genreToUpdate == "co-op":
-                genreToUpdate = "coop"
-            elif genreToUpdate == "post-apocalyptic":
-                genreToUpdate = "post_apocalyptic"
-            elif genreToUpdate == "sci-fi":
-                genreToUpdate = "scifi"
+            if genreToUpdate == "2d":                   genreToUpdate = "twod"
+            elif genreToUpdate == "class-based":        genreToUpdate = "class_based"
+            elif genreToUpdate == "co-op":              genreToUpdate = "coop"
+            elif genreToUpdate == "post-apocalyptic":   genreToUpdate = "post_apocalyptic"
+            elif genreToUpdate == "sci-fi":             genreToUpdate = "scifi"
 
             print("Genre to update after validation: ", genreToUpdate)
 
@@ -240,6 +220,14 @@ class GamesPageByGenre(generic.ListView):
         #Once either the preferences have been updated or if there is no user ID, retrieve all games that match the genre they selected
         print("GENRE NAME = ", genre_name)
         return Game.objects.filter(genres__name=str(genre_name))
+
+    def get_context_data(self, **kwargs):
+        context = super(GamesPageByGenre, self).get_context_data(**kwargs)
+
+        genre_name = self.request.GET.get("genre")
+
+        context['searched_genre'] = Genre.objects.filter(name=str(genre_name))
+        return context
 
     #TODO FOR MULTI GENRE SEARCH - return Game.objects.filter(genres__name=str('Action')).filter(genres__name=str('Side Scroller'))
 
@@ -327,45 +315,41 @@ class Recommended(generic.ListView):
                             'survival', 'third_person', 'tower_defence', 'vr', 'war', 'zombie']
 
             listOfPreferences = []
-            for genre in listOfGenres: listOfPreferences.append(getattr(user, genre))
+            for genre in listOfGenres:
+                listOfPreferences.append(getattr(user, genre))
 
             userPreferences = list(zip(listOfGenres, listOfPreferences))
             userPreferences.sort(key=itemgetter(1), reverse=True)
 
+            serendipityGenreIndex = random.randint(26, 51)
+            print("Serendipitous Genre Index = ", serendipityGenreIndex)
+
             # For their top 3 genres, ensure the case and spacing is correctly formatted
-            for genre in range(3):
-                currentGenre = userPreferences[genre][0]
+            for genre in range(4):
+                currentGenre = ""
+
+                if genre == 0 or genre == 1 or genre == 2:
+                    currentGenre = userPreferences[genre][0]
+                elif genre == 3:
+                    currentGenre = userPreferences[serendipityGenreIndex][0]
 
                 if "_" in currentGenre:
-                    if currentGenre == "post_apocalyptic":
-                        currentGenre = "Post-apocalyptic"
-                    elif currentGenre == "city_builder":
-                        currentGenre = "City Builder"
-                    elif currentGenre == "free_to_play":
-                        currentGenre = "Free To Play"
-                    elif currentGenre == "class_based":
-                        currentGenre = "Class-based"
-                    elif currentGenre == "first_person":
-                        currentGenre = "First Person"
-                    elif currentGenre == "open_world":
-                        currentGenre = "Open World"
-                    elif currentGenre == "procedural_generation":
-                        currentGenre = "Procedural Generation"
-                    elif currentGenre == "side_scroller":
-                        currentGenre = "Side Scroller"
-                    elif currentGenre == "third_person":
-                        currentGenre = "Third Person"
-                    elif currentGenre == "tower_defence":
-                        currentGenre = "Tower Defence"
+                    if currentGenre == "post_apocalyptic":          currentGenre = "Post-apocalyptic"
+                    elif currentGenre == "city_builder":            currentGenre = "City Builder"
+                    elif currentGenre == "free_to_play":            currentGenre = "Free To Play"
+                    elif currentGenre == "class_based":             currentGenre = "Class-based"
+                    elif currentGenre == "first_person":            currentGenre = "First Person"
+                    elif currentGenre == "open_world":              currentGenre = "Open World"
+                    elif currentGenre == "procedural_generation":   currentGenre = "Procedural Generation"
+                    elif currentGenre == "side_scroller":           currentGenre = "Side Scroller"
+                    elif currentGenre == "third_person":            currentGenre = "Third Person"
+                    elif currentGenre == "tower_defence":           currentGenre = "Tower Defence"
 
-                elif currentGenre == "twod":
-                    currentGenre = "2D"
-                elif currentGenre == "scifi":
-                    currentGenre = "Sci-fi"
-                elif currentGenre == "coop":
-                    currentGenre = "Co-op"
+                elif currentGenre == "twod":    currentGenre = "2D"
+                elif currentGenre == "scifi":   currentGenre = "Sci-fi"
+                elif currentGenre == "coop":    currentGenre = "Co-op"
                 elif currentGenre == "fps" or currentGenre == "rts" or currentGenre == "vr" or currentGenre == "rpg" or currentGenre == "moba":
-                    currentGenre = userPreferences[genre][0].upper()
+                    currentGenre = currentGenre.upper()
 
                 else:
                     capitalised = currentGenre[0:].capitalize()
@@ -374,8 +358,10 @@ class Recommended(generic.ListView):
                 # Add the corrected genre name to the list at the end of each loop
                 listOfValidatedGenres.append(currentGenre)
 
-        print(listOfValidatedGenres[0], listOfValidatedGenres[1], listOfValidatedGenres[2])
+        print("3 top genres = ", listOfValidatedGenres[0], listOfValidatedGenres[1], listOfValidatedGenres[2])
+        print("Serendipitous genre = ", listOfValidatedGenres[3])
         context['recommended_genres'] = Genre.objects.all().filter(name__in=[listOfValidatedGenres[0], listOfValidatedGenres[1], listOfValidatedGenres[2]])
+        context['serendipitous_genre'] = Genre.objects.all().filter(name__in=[listOfValidatedGenres[3]])
         return context
 
 

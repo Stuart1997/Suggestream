@@ -11,24 +11,38 @@
 
 {% block body %}
 <div class="content-section">
-<div>
+    <div>
+        <h1>Welcome to Suggestream{% if user.is_authenticated %}, {{ user.first_name }}!{% endif %}</h1>
+        <br>
+            <div class="row">
+                <div id="column">
+                    <form action="{% url 'genre-search' %}">
+                        <button type="submit" class="btn btn-primary btn-lg btn-block">Search By Genre</button>
+                    </form>
+                </div>
+                <div id="column">
+                    <form action="{% url 'all-metacritic' %}">
+                        <button type="submit" class="btn btn-danger btn-lg btn-block">All Games (By Rating)</button>
+                    </form></div>
+                <div id="column">
+                    <form action="{% url 'all-alphabetical' %}">
+                        <button type="submit" class="btn btn-dark btn-lg btn-block">All Games (A-Z)</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <br>
 
-<h1>Welcome to Suggestream{% if user.is_authenticated %}, {{ user.first_name }}{% endif %}</h1>
-<br>
-<form action="{% url 'genre-search' %}">
-    <button type="submit" class="btn btn-primary btn-lg btn-block">Search By Genre</button>
-</form><br>
-<form action="{% url 'title-search' %}">
-    <button type="submit" class="btn btn-primary btn-lg btn-block">Title Search</button>
-</form><br>
-<form action="{% url 'all-metacritic' %}">
-    <button type="submit" class="btn btn-primary btn-lg btn-block">All Games (By Rating)</button>
-</form><br>
-<form action="{% url 'all-alphabetical' %}">
-    <button type="submit" class="btn btn-primary btn-lg btn-block">All Games (Alphabetically)</button>
-</form>
-
-</div>
+        <div id="about">
+            <p>Suggestream is a video game recommendation website created by Stuart Purcell, a Computing student at the University of Sunderland.</p>
+            <p>This site allows you to create an account, browse game genres and receive personalised recommendations.</p>
+            <p>Each game also features a Twitch stream clip in its detail page, this is to provide you with a genuine
+               representation of the game and hopefully help you decide whether the game is for you.</p>
+            <hr>
+            <small><strong>Notice:</strong> this is a work in progress so please report bugs to Stuart in the questionnaire if you see any.</small><br>
+            <small>Feedback and future recommendations are also welcomed in order to improve the site.</small>
+        </div>
+    </div>
 </div>
 {% endblock %}
 

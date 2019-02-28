@@ -3,10 +3,12 @@
 
 {% block body %}
 
-<h1>Logged out</h1>
+<div class="content-section">
+    <h1>Logged out</h1>
 
-<div class="border-top pt-3">
-    <small class="text-muted"><a href="{% url 'login' %}">Log in</a></small>
+    <div class="border-top pt-3">
+        <small class="text-muted"><a href="{% url 'login' %}">Log in</a></small>
+    </div>
 </div>
 
 {%  endblock %}

@@ -20,7 +20,7 @@
     <thead class="thead-dark">
         <tr>
           <th class="align-middle">Description</th>
-            <td class="align-middle">{{ game.description }}</td>
+            <td class="align-middle" id="description">{{ game.description }}</td>
         </tr>
         <tr>
           <th class="align-middle">Developer</th>
@@ -59,7 +59,7 @@
         <tr>
             <th class="align-middle">Twitch Clip</th>
                 <td class="align-middle">
-                    <p>Viewing a clip will display a clip from Twitch live stream below. Warning: Some clips may contain swearing.</p>
+                    <p>Clicking the button below will display a clip from a Twitch live stream below. Warning: Some clips may contain swearing.</p>
                     <button class="btn btn-primary btn-lg" onclick="revealClip('{{ game.clip }}')">View Clip</button><br><br>
                     <a href="{{ game.streams }}">Click here to view more Twitch clips</a>
                 </td>
@@ -72,7 +72,7 @@
 </div>
 
 {% if errorMessage %}
-    <p>{{ errorMessage }}</p>
+    <p>Error! Please report this to Stuart: <br> {{ errorMessage }}</p>
 {% endif %}
 </div>
 </div>

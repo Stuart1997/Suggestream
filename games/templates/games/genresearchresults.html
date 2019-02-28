@@ -13,13 +13,17 @@
 <div class="content-section">
 <div>
 
-<h1>Genre Search Results</h1>
+{% if searched_genre %}
+    <h1>{{ searched_genre.first }} Games</h1>
+{% else %}
+    <h1>Genre Search Results</h1>
+{% endif %}
 
 <!--If the list of games exists, create a table and populate each row with a game-->
 {% if game_list %}
 <div class="table-responsive">
 
-    <table class="table">
+    <table class="table table-bordered">
         <!--Sets up headings-->
         <thead class="thead-dark">
         <tr>
@@ -53,7 +57,7 @@
 </div>
 
 {% else %}
-    <p>No games found!</p>
+    <p>No games found! Please report this to Stuart.</p>
 {% endif %}
 </div>
 </div>

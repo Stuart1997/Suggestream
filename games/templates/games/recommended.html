@@ -9,7 +9,7 @@
 </head>
 <body>
 
-{%  block body %}
+{% block body %}
 <div class="content-section">
 <div>
 
@@ -17,11 +17,17 @@
 
 {% if recommended_genres %}
     {% if recommended_genres.0.name == "2D" and recommended_genres.1.name == "Action" and recommended_genres.2.name == "Adventure" %}
-    <p>No preferences detected! Please help us identify the games you enjoy by following <a href="{% url 'home:favourites' %}">this link</a></p>
+    <p>Not enough preference data! Please help us identify the genres you enjoy by following <a href="{% url 'home:favourites' %}">this link</a></p>
 
 {% else %}
 
-<h5>These recommendations are based off your preference of: {{ recommended_genres.0 }}, {{ recommended_genres.1 }} and {{ recommended_genres.2 }} games</h5>
+<h4>These recommendations are based off your preference of the genres:<br>
+    {{ recommended_genres.0 }}, {{ recommended_genres.1 }} and {{ recommended_genres.2 }}</h4><br>
+
+{% if serendipitous_genre %}
+    <h5>You don't seem to have shown much love towards {{ serendipitous_genre.first }} games, why not take a look at them
+        <a href="{% url 'genre-results' %}?genre={{ serendipitous_genre.first }}&userid=None">here</a>?</h5>
+{% endif %}
 
 {% if game_list %}
 
@@ -76,16 +82,18 @@
             {% endif %}
 
 
-            <!--The detail page requires a game ID as part of its URL, this grabs the game that is selected's ID-->
-            <td class="align-middle"><a href="{% url 'games:detail' game.id %}">Click for more details</a></td>
+                <!--The detail page requires a game ID as part of its URL, this grabs the game that is selected's ID-->
+                <td class="align-middle"><a href="{% url 'games:detail' game.id %}"><img src="https://img.icons8.com/ios/50/000000/circled-right-2-filled.png"/></a></td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
+
+    <small><a href="https://icons8.com/icon/26196/forward-button-filled">Forward Button Filled icon by Icons8</a></small>
 </div>
 
 {% else %}
-    <p>No games found!</p>
+    <p>No games found! Please report this to Stuart.</p>
 {% endif %}
 {% endif %}
 {% endif %}

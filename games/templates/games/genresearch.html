@@ -16,7 +16,9 @@
 
 <h1>Search By Genre</h1>
 {% if genre_list %}
-<br>
+<div id="cenalign">
+    <p>Select a genre from the dropdown box below.</p>
+</div>
 <!--Create a dropdown box containing each genre in the database to search by-->
 <div class="col-md-12 school-options-dropdown text-center">
     <div class="dropdown btn-group">
@@ -31,6 +33,8 @@
     </div>
 </div>
 
+{% else %}
+    <p>Error! No genres found! If you see this, please report it to Stuart.</p>
 {% endif %}
 </div>
 </div>

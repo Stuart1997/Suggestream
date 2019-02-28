@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Search By Genre</title>
+    <title>Favourites</title>
     {% extends 'games/base.html' %}
 </head>
 <body>
@@ -57,6 +57,8 @@
     <button type="submit" class="btn btn-primary btn-lg">Submit Favourites</button>
 </form>
 
+{% else %}
+    <p>Error! Please report this to Stuart.</p>
 {% endif %}
 
 </div>

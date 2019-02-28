@@ -16,7 +16,8 @@
     <!--If the list of games exists, create a table and populate each row with a game-->
     {% if game_list %}
         {% if game_list.0.name == "Adventure Capitalist" %} <h1>Games in Alphabetical Order</h1>
-        {% elif game_list.0.metacritic > 95 %} <h1>Games by Metacritic Rating</h1>{% endif %}
+        {% elif game_list.0.metacritic > 95 %} <h1>Games by Metacritic Rating</h1>
+    {% endif %}
 
     <div class="table-responsive">
     <table class="table table-bordered">
@@ -53,7 +54,7 @@
     </div>
 
     {% else %}
-        <p>No games found!</p>
+        <p>No games found! Please report this to Stuart.</p>
     {% endif %}
 
     </div>
