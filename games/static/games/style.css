@@ -22,11 +22,6 @@ div#column {
     overflow-wrap: break-word;
 }
 
-div#about  {
-    margin-left: 15%;
-    margin-right: 15%;
-}
-
 @media (max-width: 1000px) {
     div#column {
         width: 100%;
@@ -38,6 +33,11 @@ div#about  {
         margin-left: 10%;
         margin-right: 10%;
     }
+}
+
+div#about  {
+    margin-left: 15%;
+    margin-right: 15%;
 }
 
 .row button {

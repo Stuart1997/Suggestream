@@ -19,18 +19,23 @@
 <br><br>
 
 <!--Menu options for the user to browse-->
-<form action="{% url 'genre-search' %}">
-    <button type="submit" class="btn btn-primary btn-lg btn-block">Search By Genre</button>
-</form><br>
-<form action="{% url 'title-search' %}">
-    <button type="submit" class="btn btn-primary btn-lg btn-block">Title Search</button>
-</form><br>
-<form action="{% url 'all-metacritic' %}">
-    <button type="submit" class="btn btn-primary btn-lg btn-block">All Games (By Rating)</button>
-</form><br>
-<form action="{% url 'all-alphabetical' %}">
-    <button type="submit" class="btn btn-primary btn-lg btn-block">All Games (Alphabetically)</button>
-</form>
+<div class="row">
+                <div id="column">
+                    <form action="{% url 'genre-search' %}">
+                        <button type="submit" class="btn btn-primary btn-lg btn-block">Search By Genre</button>
+                    </form>
+                </div>
+                <div id="column">
+                    <form action="{% url 'all-metacritic' %}">
+                        <button type="submit" class="btn btn-danger btn-lg btn-block">All Games (By Rating)</button>
+                    </form></div>
+                <div id="column">
+                    <form action="{% url 'all-alphabetical' %}">
+                        <button type="submit" class="btn btn-dark btn-lg btn-block">All Games (A-Z)</button>
+                    </form>
+                </div>
+            </div>
+        </div>
 
 </div>
 </div>

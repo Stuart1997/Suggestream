@@ -51,7 +51,8 @@
         {% for game in game_list %}
         <tbody>
         <tr>
-            <!--Add the game's details-->
+            <!--Add the game's details, d-#-table-cell determines when the column displays
+                determined by the size of the screen on a small/medium/large/extra large scale-->
             <td class="align-middle d-none d-xl-table-cell"><img src="{{ game.image }}"></td>
             <td class="align-middle">{{ game.name }}</td>
             <td class="align-middle d-none d-md-table-cell">{{ game.developer }}</td>

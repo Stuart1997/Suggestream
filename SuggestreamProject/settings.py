@@ -25,7 +25,8 @@ SECRET_KEY = '7_6_i155y3v3di2ectd!$!n7w9pu$3d6os1jsjb9m@0g8eu!r3'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1',
+                 'suggestream.pythonanywhere.com']
 
 
 # Application definition

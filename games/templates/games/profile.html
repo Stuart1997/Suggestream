@@ -4,7 +4,7 @@
 {% block body %}
 <div class="content-section">
     <!--User doesn't need to be passed in as it will automatically use django's user variable-->
-    <h1>Hello, {{ user.username }}</h1>
+    <h1>Hello, {{ user.first_name }}</h1>
     <p>If you are no longer interested in a particular genre, or just want to stop being recommended games of this genre,
         select it from the dropdown box below and your preferences will be updated accordingly.</p>
 
